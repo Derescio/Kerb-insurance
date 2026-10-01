@@ -1,43 +1,67 @@
-<!-- @dsCard group="Web" viewport="1280x860" name="Kerb web" subtitle="Quote journey (car → you → cover → pay) and account dashboard" -->
+<!-- @dsCard group="Web" viewport="1280x860" name="Kerb web" subtitle="Quote & policy and claims journeys (hi-fi), plus the legacy account dashboard" -->
 <!doctype html><html><head><meta charset="utf-8"><title>Kerb — web</title>
 <link rel="stylesheet" href="../../styles.css">
-<style>html,body{margin:0}body{background:var(--bg-page);min-width:1100px}</style>
+<style>html,body{margin:0}body{background:var(--bg-surface);min-width:1100px}.demo-nav{position:fixed;left:16px;bottom:16px;z-index:300;display:flex;gap:4px;padding:4px;border-radius:999px;background:var(--bg-surface);box-shadow:var(--shadow-2)}.demo-nav button{border:0;background:none;padding:6px 12px;border-radius:999px;cursor:pointer;font:500 12px/16px var(--font-mono);color:var(--fg-3)}.demo-nav button[aria-pressed="true"]{background:var(--green-900);color:#fff}</style>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
+<script type="text/babel" src="../shared/Patterns.jsx"></script>
 <script type="text/babel" src="Chrome.jsx"></script>
 <script type="text/babel" src="QuoteSteps.jsx"></script>
+<script type="text/babel" src="ClaimsJourney.jsx"></script>
 <script type="text/babel" src="Dashboard.jsx"></script>
 </head><body><div id="root"></div>
 <script type="text/babel">
-const { Toast } = window.KerbDesignSystem_549f9e;
+const load = () => { try { return JSON.parse(localStorage.getItem('kerb-web') || '{}'); } catch (e) { return {}; } };
+const CLAIM0 = { ref: 'KRB-C-20931', submitted: true, incident: 'Rear-ended', areas: ['Rear bumper', 'Boot lid', 'Left rear light'], photos: [['Rear bumper', 'IMG_4821.jpg'], ['Boot lid', 'IMG_4823.jpg'], ['Left light', 'IMG_4824.jpg']], agree: false, sending: false };
+
 function WebApp() {
-  const [view, setView] = React.useState(localStorage.getItem('kerb-web-view') || 'quote');
-  const [step, setStep] = React.useState(0);
-  const [tab, setTab] = React.useState('overview');
-  const [q, setQ] = React.useState({ plate: 'KR24 BXL', found: false, plan: 'comp', breakdown: true, courtesy: false, freq: 'monthly', agree: false });
-  const set = (p) => setQ((s) => ({ ...s, ...p }));
-  React.useEffect(() => { localStorage.setItem('kerb-web-view', view); }, [view]);
-  const monthly = PLANS[q.plan].price + (q.breakdown ? 6.5 : 0) + (q.courtesy ? 3.2 : 0);
-  const total = q.freq === 'annual' ? monthly * 12 * 0.94 : monthly;
-  if (view === 'app') {
-    return (
-      <div data-screen-label="Dashboard">
-        <AppHeader tab={tab} onTab={setTab} />
-        <Dashboard plan={monthly + 26.8} justBought={q.agree} />
-        <div style={{ position: 'fixed', left: 24, bottom: 24 }}><button onClick={() => { setView('quote'); setStep(0); set({ found: false, agree: false }); }} style={{ border: 0, background: 'none', color: 'var(--fg-3)', font: '500 12px var(--font-mono)', cursor: 'pointer' }}>↺ restart quote demo</button></div>
-      </div>
-    );
+  const saved = load();
+  const [view, setView] = React.useState(saved.view || 'landing');   // landing | quote | policy | claims | dashboard
+  const [step, setStep] = React.useState(saved.step || 0);           // quote: 0 about, 1 cover, 2 pay · claims: 0 home … 4 confirmation
+  const [bought, setBought] = React.useState(!!saved.bought);
+  const [q, setQ] = React.useState({ plate: 'KR24 BXL', postcode: 'E8 3RL', name: 'Maya Patel', plan: 'comp', freq: 'monthly', agree: false });
+  const [c, setC] = React.useState(CLAIM0);
+  const setq = (p) => setQ((s) => ({ ...s, ...p }));
+  const setc = (p) => setC((s) => ({ ...s, ...p }));
+  React.useEffect(() => { try { localStorage.setItem('kerb-web', JSON.stringify({ view, step, bought })); } catch (e) {} window.scrollTo(0, 0); }, [view, step, bought]);
+  const go = (v, s = 0) => { setView(v); setStep(s); };
+  const nav = (id) => id === 'claims' ? go('claims') : id === 'policy' ? go(bought ? 'policy' : 'landing') : id === 'home' ? go(bought ? 'policy' : 'landing') : null;
+  const active = view === 'claims' ? 'claims' : view === 'dashboard' ? null : 'policy';
+  const submit = () => { setc({ sending: true }); setTimeout(() => { setC((s) => ({ ...s, sending: false, submitted: true, ref: 'KRB-C-' + (21000 + Math.floor(Math.random() * 900)) })); setStep(4); }, 900); };
+  const newClaim = () => { setC({ ...CLAIM0, submitted: c.submitted, ref: c.ref, incident: 'Rear-ended' }); setStep(1); };
+
+  let body;
+  if (view === 'landing') body = <Landing q={q} set={setq} onStart={() => go('quote', 0)} />;
+  else if (view === 'dashboard') body = <Dashboard plan={PLANS[q.plan].price + 26.8} justBought={false} />;
+  else {
+    let inner;
+    if (view === 'quote') {
+      inner = [
+        <AboutYouStep q={q} set={setq} onBack={() => go('landing')} onNext={() => setStep(1)} />,
+        <CoverStep q={q} set={setq} onNext={() => setStep(2)} />,
+        <PayStep q={q} set={setq} onPay={() => { setBought(true); go('policy', 1); }} />,
+      ][step];
+    } else if (view === 'policy') inner = <PolicyOverview q={q} justBought={step === 1} />;
+    else inner = [
+      <ClaimsHome c={c} onStart={newClaim} onView={() => setStep(4)} />,
+      <IncidentStep c={c} set={setc} onExit={() => setStep(0)} onNext={() => setStep(2)} />,
+      <DamageStep c={c} set={setc} onBack={() => setStep(1)} onNext={() => setStep(3)} />,
+      <ReviewStep c={c} set={setc} onBack={() => setStep(2)} onSubmit={submit} />,
+      <ConfirmationStep c={c} onDone={() => setStep(0)} />,
+    ][step];
+    body = <Page>{inner}</Page>;
   }
-  const Step = [CarStep, YouStep, CoverStep, PayStep][step];
   return (
-    <div data-screen-label={'Quote step ' + (step + 1)}>
-      <QuoteHeader step={step} onExit={() => setView('app')} />
-      <Container style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 360px', gap: 56, padding: '48px 40px 80px', alignItems: 'start' }}>
-        <main style={{ maxWidth: 680 }}><Step q={q} set={set} total={total} /></main>
-        <Summary q={q} total={total} step={step} onBack={() => setStep(step - 1)} onNext={() => (step < 3 ? setStep(step + 1) : setView('app'))} />
-      </Container>
+    <div data-screen-label={view + ' ' + step}>
+      <SiteHeader active={active} onNav={nav} />
+      {body}
+      <div className="demo-nav" aria-label="Demo navigation">
+        {[['landing', 'Quote journey'], ['claims', 'Claims journey'], ['dashboard', 'Account dashboard']].map(([v, l]) => (
+          <button key={v} aria-pressed={view === v || (v === 'landing' && (view === 'quote' || view === 'policy'))} onClick={() => { if (v === 'landing') { setBought(false); setq({ agree: false }); } go(v); }}>{l}</button>
+        ))}
+      </div>
     </div>
   );
 }

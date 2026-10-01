@@ -29,8 +29,8 @@ Kerb talks like a calm, competent friend who happens to know insurance. The job 
 ## Visual foundations
 - **Palette.** *Evergreen* (#0B2A22 → #EFF7F3) is the brand: primary actions use green-600, hero surfaces green-900. *Marker* (#E4F55A), a hi-vis road-line yellow, is the only accent — one hero CTA per screen (Get a quote, Start a claim), plan flags, highlights on evergreen, and the number-plate field. It is never text on light backgrounds. *Stone* warm neutrals carry text, borders and the page (#F5F4EF). Status colours (green/amber/red/blue) each come as fg/bg/border triples.
 - **Type.** Bricolage Grotesque (display: 800/700, tight -0.035em tracking) for headlines and big prices; Instrument Sans for everything you read or tap; IBM Plex Mono for references, plates, overlines and anything the user might need to read out on the phone. Figures are tabular wherever money lines up.
-- **Backgrounds.** Flat colour only — warm stone page, white cards, evergreen hero blocks. No gradients, textures or illustration. Photo placeholders are neutral diagonal stripes until real imagery exists.
-- **Imagery (when added).** Warm, natural daylight, real streets and ordinary cars; slight warmth, no heavy grain, no stock-photo handshakes. Never crash imagery.
+- **Backgrounds.** Flat colour only — warm stone or white page, white cards, evergreen hero blocks and app bars. No textures or illustration. The one gradient allowed is the evergreen fade (`green-900` → transparent over 35%) where a hero photo meets an evergreen panel. Damage/upload photo slots stay as placeholders.
+- **Imagery.** One hero photo so far: `assets/images/hero-coastal-road.jpg` (dark green hatchback on a wet coastal road, overcast daylight) on the quote landing. New imagery should follow it: real roads and ordinary cars, natural light, no heavy grain, no stock-photo handshakes. Never crash imagery.
 - **Corner radii.** Pills for buttons, badges, tags, tabs; 12px inputs and alerts; 16px cards and plan options; 24px dialogs and bottom sheets; 4–8px small bits (tooltips, plates).
 - **Cards.** White, 16px radius, `--shadow-1` (a 1px green-tinted hairline + 2px soft shadow). Outline variant = hairline only; sunken = stone-100; inverse = evergreen. No coloured left-border accents; alerts use a full hairline in their tone.
 - **Shadows.** Three levels, all tinted with evergreen rather than black: rest, hover/dropdown, overlay (dialogs, toasts). No inner shadows except the 1.5px inset used on plates.
@@ -64,8 +64,11 @@ Loaded from Google Fonts in `tokens/fonts.css` (no self-hosted binaries): Bricol
 - `components/kerb-components.css` — all component styles (`kb-` prefix).
 - `components/<group>/` — JSX + `.d.ts` + `.prompt.md` + one card per group.
 - `guidelines/` — foundation specimen cards (colors, type, spacing, brand).
-- `ui_kits/mobile-app/` — Kerb app click-through (iOS frame).
-- `ui_kits/web/` — quote journey + dashboard click-through.
+- `ui_kits/mobile-app/` — Kerb app click-through (iOS frame): signed-in app + new-customer quote.
+- `ui_kits/web/` — quote & policy and claims journeys + legacy dashboard click-through.
+- `ui_kits/shared/Patterns.jsx` — screen patterns and demo data used by both kits.
+- `assets/images/` — photography.
+- Figma: [Kerb Design System](https://www.figma.com/design/ajpEaPwbWtwbsSmRheyDAU) — variables, styles and components mirror `tokens/` and `components/`; the *High Fidelity Wireframes* page is the source for the UI kits (tablet frames are design-only for now).
 - `thumbnail.html`, `SKILL.md`.
 
 ## Components

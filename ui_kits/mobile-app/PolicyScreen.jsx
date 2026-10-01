@@ -1,70 +1,75 @@
 (() => {
-const { Tabs, Card, Icon, IconButton, Switch, Button, Tooltip, Badge } = window.KerbDesignSystem_549f9e;
+const { Tabs, Icon, IconButton, Switch, Button, Tooltip, Badge, Alert } = window.KerbDesignSystem_549f9e;
 
-function PolicyScreen() {
-  const [tab, setTab] = React.useState('cover');
-  return (
-    <div style={{ padding: '6px 20px 32px' }}>
-      <div className="kb-overline" style={{ color: 'var(--fg-3)' }}>KRB-P-448120</div>
-      <h1 className="kb-h1" style={{ margin: '4px 0 16px' }}>Your policy</h1>
-      <Tabs fullWidth value={tab} onChange={setTab} items={[{ id: 'cover', label: 'Cover' }, { id: 'docs', label: 'Documents' }, { id: 'drivers', label: 'Drivers' }]} />
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 20 }}>
-        {tab === 'cover' ? <CoverTab /> : tab === 'docs' ? <DocsTab /> : <DriversTab />}
-      </div>
-    </div>
-  );
-}
-
-function CoverTab() {
-  const covered = ['Damage to other people and property', 'Accidental damage to your car', 'Fire and theft', 'Windscreen and glass repair', 'Belongings in the car, up to £300'];
+// Hi-fi "Active policy". Overview / Documents / Payments follow the wireframe; Cover and Drivers keep the v1 detail.
+function PolicyScreen({ justBought, plan = PLANS.comp }) {
+  const [tab, setTab] = React.useState('overview');
   return (
     <>
-      <Card padding="sm">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 }}>
-          <span style={{ font: '600 16px/22px var(--font-display)' }}>Comprehensive</span>
-          <span className="kb-num" style={{ font: '700 16px/22px var(--font-display)' }}>£38.20<span style={{ font: '400 13px var(--font-body)', color: 'var(--fg-3)' }}>/month</span></span>
-        </div>
-        {covered.map((c) => (
-          <div key={c} style={{ display: 'flex', gap: 10, padding: '7px 0', font: '400 14px/20px var(--font-body)' }}><Icon name="check" size={18} color="var(--green-600)" />{c}</div>
-        ))}
-      </Card>
-      <Card padding="sm">
-        <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 4 }}>
-          <span style={{ font: '600 16px/22px var(--font-display)' }}>Excess</span>
-          <Tooltip content="The amount you pay towards any claim. We pay the rest."><IconButton icon="info" label="What is excess?" size="sm" /></Tooltip>
-        </div>
-        {[['Compulsory', '£250'], ['Voluntary', '£100']].map(([k, v]) => (
-          <div key={k} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', font: '400 14px/20px var(--font-body)', color: 'var(--fg-2)' }}><span>{k}</span><span className="kb-num">{v}</span></div>
-        ))}
-        <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0 0', marginTop: 4, borderTop: '1px solid var(--border-1)', font: '600 15px/20px var(--font-body)' }}><span>You pay per claim</span><span className="kb-num">£350</span></div>
-      </Card>
-      <Card padding="sm" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <span style={{ font: '600 16px/22px var(--font-display)' }}>Extras</span>
-        <Switch labelPosition="end" defaultChecked label={<span>Breakdown cover<span style={{ display: 'block', font: '400 13px/18px var(--font-body)', color: 'var(--fg-3)' }}>£6.50/month · roadside and recovery</span></span>} />
-        <Switch labelPosition="end" label={<span>Courtesy car<span style={{ display: 'block', font: '400 13px/18px var(--font-body)', color: 'var(--fg-3)' }}>£3.20/month · while yours is repaired</span></span>} />
-        <Switch labelPosition="end" defaultChecked label="Auto-renew on 14 Mar 2027" />
-      </Card>
+      <StepHead over="Your policy" title="You’re covered, Maya" sub="Policy KRB-492810 · Started 1 Oct 2026" right={<Badge tone="success" dot>Active</Badge>} />
+      {justBought ? <Alert tone="success" title={`Payment received · ${money(plan.price)}`}>Your documents are ready and your cover is active.</Alert> : null}
+      <div style={{ overflowX: 'auto', margin: '0 -20px', padding: '0 20px' }}>
+        <Tabs value={tab} onChange={setTab} items={[{ id: 'overview', label: 'Overview' }, { id: 'cover', label: 'Cover' }, { id: 'docs', label: 'Documents', count: DOCUMENTS.length }, { id: 'payments', label: 'Payments' }, { id: 'drivers', label: 'Drivers' }]} />
+      </div>
+      {tab === 'overview' ? <Overview plan={plan} /> : tab === 'cover' ? <CoverTab plan={plan} /> : tab === 'docs' ? <Docs /> : tab === 'payments' ? <Payments plan={plan} /> : <DriversTab />}
     </>
   );
 }
 
-function DocsTab() {
-  const docs = [['Certificate of motor insurance', 'Proof you can legally drive'], ['Policy schedule', 'Your cover, excess and price'], ['Policy wording', 'The full terms, 38 pages'], ['Statement of fact', 'What you told us']];
+const sub = (t) => <span style={{ display: 'block', font: '400 13px/18px var(--font-body)', color: 'var(--fg-3)' }}>{t}</span>;
+
+function Overview({ plan }) {
   return (
-    <Card padding="sm" style={{ paddingTop: 2, paddingBottom: 2 }}>
-      {docs.map(([t, s], i) => <Row key={t} icon="file-text" title={t} sub={s} last={i === docs.length - 1} right={<IconButton icon="download" label={'Download ' + t} />} />)}
-    </Card>
+    <>
+      <PolicyCard until="30 Sep 2027" sub={`${plan.name} · £350 excess`} />
+      <InfoCard>
+        <Switch labelPosition="end" defaultChecked label={<span>Auto-renew{sub('We’ll remind you before renewal.')}</span>} />
+        <KV rows={[['Next payment', '1 Nov 2026'], ['Payment method', 'Visa •••• 4242'], ['Monthly amount', money(plan.price), 'brand']]} />
+      </InfoCard>
+      <Docs />
+    </>
+  );
+}
+
+function Docs() {
+  return <InfoCard title="Documents"><div>{DOCUMENTS.map((d, i) => <DocRow key={d} name={d} last={i === DOCUMENTS.length - 1} />)}</div></InfoCard>;
+}
+
+function Payments({ plan }) {
+  return <InfoCard title="Payments"><KV rows={[['1 Oct 2026', money(plan.price)], ['Next: 1 Nov 2026', money(plan.price)], ['Payment method', 'Visa •••• 4242']]} /></InfoCard>;
+}
+
+function CoverTab({ plan }) {
+  return (
+    <>
+      <InfoCard title={plan.name}>
+        {['Damage to other people and property', 'Accidental damage to your car', 'Fire and theft', 'Windscreen and glass repair', 'Belongings in the car, up to £300'].map((c) => (
+          <div key={c} style={{ display: 'flex', gap: 10, font: '400 14px/20px var(--font-body)' }}><Icon name="check" size={18} color="var(--green-600)" />{c}</div>
+        ))}
+      </InfoCard>
+      <InfoCard>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+          <span style={{ font: '700 18px/24px var(--font-display)' }}>Excess</span>
+          <Tooltip content="The amount you pay towards any claim. We pay the rest."><IconButton icon="info" label="What is excess?" size="sm" /></Tooltip>
+        </div>
+        <KV rows={[['Compulsory', '£250'], ['Voluntary', '£100'], ['You pay per claim', '£350', 'brand']]} />
+      </InfoCard>
+      <InfoCard title="Extras">
+        <Switch labelPosition="end" defaultChecked label={<span>Breakdown cover{sub('£6.50/month · roadside and recovery')}</span>} />
+        <Switch labelPosition="end" label={<span>Courtesy car{sub('£3.20/month · while yours is repaired')}</span>} />
+      </InfoCard>
+    </>
   );
 }
 
 function DriversTab() {
   const Init = ({ n, bg }) => <span style={{ display: 'grid', placeItems: 'center', width: 40, height: 40, borderRadius: 999, background: bg, color: 'var(--green-900)', font: '600 14px/1 var(--font-body)', flex: 'none' }}>{n}</span>;
+  const row = (n, bg, name, meta, badge, last) => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '12px 0', borderBottom: last ? 0 : '1px solid var(--border-1)' }}><Init n={n} bg={bg} /><div style={{ flex: 1 }}><div style={{ font: '500 15px/20px var(--font-body)' }}>{name}</div>{sub(meta)}</div>{badge}</div>
+  );
   return (
     <>
-      <Card padding="sm" style={{ paddingTop: 2, paddingBottom: 2 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 0', borderBottom: '1px solid var(--border-1)' }}><Init n="MP" bg="var(--marker-300)" /><div style={{ flex: 1 }}><div style={{ font: '500 15px/20px var(--font-body)' }}>Maya Patel</div><div style={{ font: '400 13px/18px var(--font-body)', color: 'var(--fg-3)' }}>Licence held 9 years</div></div><Badge tone="inverse">Main driver</Badge></div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 0' }}><Init n="SO" bg="var(--green-100)" /><div style={{ flex: 1 }}><div style={{ font: '500 15px/20px var(--font-body)' }}>Sam Okafor</div><div style={{ font: '400 13px/18px var(--font-body)', color: 'var(--fg-3)' }}>Licence held 4 years</div></div><Badge tone="brand">Named</Badge></div>
-      </Card>
+      <InfoCard><div>{row('MP', 'var(--marker-300)', 'Maya Patel', 'Licence held 9 years', <Badge tone="inverse">Main driver</Badge>)}{row('SO', 'var(--green-100)', 'Sam Okafor', 'Licence held 4 years', <Badge tone="brand">Named</Badge>, true)}</div></InfoCard>
       <Button variant="secondary" iconLeft="user-plus" fullWidth>Add a driver</Button>
     </>
   );

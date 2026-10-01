@@ -201,8 +201,10 @@ function IOSList({ header, children, dark = false }) {
 // ─────────────────────────────────────────────────────────────
 function IOSDevice({
   children, width = 402, height = 874, dark = false,
-  title, keyboard = false,
+  title, keyboard = false, statusBarDark,
 }) {
+  // Kerb edit: statusBarDark lets a light device show white status-bar glyphs over an evergreen app bar.
+  const statusDark = statusBarDark === undefined ? dark : statusBarDark;
   return (
     // data-om-starter: inert presence marker — Claude Design's starter-usage
     // probe reads it; it renders nothing. Keep it on this root element.
@@ -220,7 +222,7 @@ function IOSDevice({
       }} />
       {/* status bar (absolute) */}
       <div style={{ position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10 }}>
-        <IOSStatusBar dark={dark} />
+        <IOSStatusBar dark={statusDark} />
       </div>
       {/* nav + content */}
       <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>

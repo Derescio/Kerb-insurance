@@ -1,51 +1,51 @@
-<!-- @dsCard group="Mobile app" viewport="560x940" name="Kerb app" subtitle="Home, policy, claims, claim flow, tracker — click through" -->
+<!-- @dsCard group="Mobile app" viewport="560x1000" name="Kerb app" subtitle="Signed-in app (home, policy, claims, claim flow) and new-customer quote — click through" -->
 <!doctype html><html><head><meta charset="utf-8"><title>Kerb — mobile app</title>
 <link rel="stylesheet" href="../../styles.css">
-<style>html,body{margin:0;height:100%}body{background:var(--stone-200);display:grid;place-items:center;min-height:940px}</style>
+<style>html,body{margin:0;height:100%}body{background:var(--stone-200);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;min-height:1000px}[data-om-starter] *{scrollbar-width:none}[data-om-starter] *::-webkit-scrollbar{display:none}</style>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
+<script type="text/babel" src="../shared/Patterns.jsx"></script>
 <script type="text/babel" src="ios-frame.jsx"></script>
 <script type="text/babel" src="Shell.jsx"></script>
 <script type="text/babel" src="HomeScreen.jsx"></script>
 <script type="text/babel" src="PolicyScreen.jsx"></script>
 <script type="text/babel" src="ClaimsScreens.jsx"></script>
 <script type="text/babel" src="ClaimFlow.jsx"></script>
+<script type="text/babel" src="QuoteFlow.jsx"></script>
 <script type="text/babel" src="AccountScreen.jsx"></script>
 </head><body><div id="root"></div>
 <script type="text/babel">
-const { Toast } = window.KerbDesignSystem_549f9e;
+const { Tabs } = window.KerbDesignSystem_549f9e;
 function MobileApp() {
+  const [mode, setMode] = React.useState('app');      // app | quote
   const [screen, setScreen] = React.useState('home');
   const [tab, setTab] = React.useState('home');
-  const [toast, setToast] = React.useState(null);
+  const [justBought, setJustBought] = React.useState(false);
   const [claims, setClaims] = React.useState([
-    { ref: 'KRB-C-20931', title: 'Rear bumper repair', date: '21 Sep', open: true },
+    { ref: 'KRB-C-20931', title: 'Rear bumper repair', incident: 'Rear-ended', date: '18 Sep', open: true },
     { ref: 'KRB-C-17402', title: 'Windscreen chip', date: '3 Feb', open: false },
   ]);
   const go = (s) => { setScreen(s); if (['home', 'policy', 'claims', 'account'].includes(s)) setTab(s); };
   const open = claims.find((c) => c.open);
-  const submit = (title) => {
-    const c = { ref: 'KRB-C-' + (21000 + Math.floor(Math.random() * 900)), title, date: '24 Sep', open: true };
-    setClaims([c, ...claims]); setScreen('tracker'); setToast(c.ref);
-    setTimeout(() => setToast(null), 5000);
-  };
-  let body;
-  if (screen === 'flow') body = <ClaimFlow onClose={() => go(tab)} onSubmit={submit} />;
-  else if (screen === 'tracker') body = <Screen><TrackerScreen back={() => go(tab)} claim={open} /></Screen>;
-  else body = (
-    <Screen footer={<TabBar tab={tab} onTab={go} />}>
-      {screen === 'home' ? <HomeScreen go={go} claim={open} /> : screen === 'policy' ? <PolicyScreen /> : screen === 'claims' ? <ClaimsScreen go={go} claims={claims} /> : <AccountScreen />}
-    </Screen>
-  );
+  const submitted = (c) => setClaims((cs) => [{ ...c, incident: c.title.split(' · ')[0], open: true }, ...cs.map((x) => ({ ...x, open: false }))]);
+  const switchMode = (m) => { setMode(m); setScreen(m === 'app' ? 'home' : 'quote'); setTab('home'); setJustBought(false); };
+
+  let body, evergreenTop = true;
+  if (mode === 'quote') body = <QuoteFlow key="quote" onBought={() => { setMode('app'); setJustBought(true); go('policy'); }} />;
+  else if (screen === 'flow') body = <ClaimFlow onClose={() => go('claims')} onSubmit={submitted} onDone={() => go('claims')} />;
+  else if (screen === 'tracker') body = <AppScreen onBack={() => go(tab)}><TrackerScreen claim={open} /></AppScreen>;
+  else if (screen === 'policy') body = <AppScreen footer={<TabBar tab={tab} onTab={go} />}><PolicyScreen justBought={justBought} /></AppScreen>;
+  else if (screen === 'claims') body = <AppScreen footer={<TabBar tab={tab} onTab={go} />}><ClaimsScreen go={go} claims={claims} /></AppScreen>;
+  else { evergreenTop = false; body = <Screen footer={<TabBar tab={tab} onTab={go} />}>{screen === 'home' ? <HomeScreen go={go} claim={open} /> : <AccountScreen />}</Screen>; }
   return (
-    <IOSDevice>
-      <div style={{ height: '100%', position: 'relative' }} data-screen-label={screen}>
-        {body}
-        {toast ? <div style={{ position: 'absolute', left: 16, right: 16, bottom: 40, display: 'flex', justifyContent: 'center', zIndex: 60 }}><Toast title="Claim submitted" message={'Reference ' + toast} onClose={() => setToast(null)} /></div> : null}
-      </div>
-    </IOSDevice>
+    <>
+      <Tabs variant="pill" value={mode} onChange={switchMode} items={[{ id: 'app', label: 'Signed-in app' }, { id: 'quote', label: 'New customer quote' }]} />
+      <IOSDevice statusBarDark={evergreenTop}>
+        <div style={{ height: '100%', position: 'relative' }} data-screen-label={mode + ' ' + screen}>{body}</div>
+      </IOSDevice>
+    </>
   );
 }
 ReactDOM.createRoot(document.getElementById('root')).render(<MobileApp />);

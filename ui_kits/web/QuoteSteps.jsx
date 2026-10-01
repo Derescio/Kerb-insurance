@@ -1,149 +1,131 @@
 (() => {
-const { Input, Button, Card, Select, Radio, Checkbox, CoverageOption, Tabs, Alert, Badge, Icon, Tooltip, IconButton } = window.KerbDesignSystem_549f9e;
+const { Input, Button, Select, Radio, Checkbox, CoverageOption, Alert, Badge, Stepper, Tabs, Switch, Card, Icon } = window.KerbDesignSystem_549f9e;
 
-const PLANS = {
-  tp: { name: 'Third party', price: 29.4 },
-  tpft: { name: 'Third party, fire & theft', price: 32.1 },
-  comp: { name: 'Comprehensive', price: 38.2 },
-};
-const money = (n) => '£' + n.toFixed(2);
-
-function StepHead({ over, title, sub }) {
+// 01 · Quote landing — evergreen hero with plate lookup and the coastal-road photo.
+function Landing({ q, set, onStart }) {
   return (
-    <div style={{ marginBottom: 28 }}>
-      <div className="kb-overline" style={{ color: 'var(--fg-3)' }}>{over}</div>
-      <h1 className="kb-h1" style={{ margin: '6px 0 0' }}>{title}</h1>
-      {sub ? <p className="kb-body-l" style={{ margin: '8px 0 0', color: 'var(--fg-2)' }}>{sub}</p> : null}
-    </div>
+    <section style={{ background: 'var(--bg-inverse)', color: 'var(--fg-inverse)', minHeight: 'calc(100vh - 72px)', display: 'grid', gridTemplateColumns: 'minmax(0, 1.6fr) minmax(320px, 1fr)' }}>
+      <div style={{ padding: '56px 40px 64px max(40px, calc((100vw - 1200px) / 2 + 40px))', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 20, maxWidth: 680 }}>
+        <Badge tone="accent">Cover that keeps moving</Badge>
+        <h1 className="kb-display-l" style={{ margin: 0 }}>Car insurance, minus the detours.</h1>
+        <p className="kb-body-l" style={{ margin: 0, color: 'var(--fg-inverse-2)', maxWidth: 520 }}>Straight-talking comprehensive cover, with a price that stays clear from quote to policy.</p>
+        <Card padding="sm" style={{ width: '100%', maxWidth: 448, display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <Input variant="plate" label="Car registration" value={q.plate} onChange={(e) => set({ plate: e.target.value.toUpperCase() })} />
+          <Input label="Postcode" value={q.postcode} onChange={(e) => set({ postcode: e.target.value.toUpperCase() })} />
+        </Card>
+        <Button variant="accent" size="lg" iconRight="arrow-right" onClick={onStart}>Get my quote</Button>
+        <div className="kb-caption" style={{ color: 'var(--fg-inverse-2)' }}>Takes about 4 minutes · No call centres · Save and return anytime</div>
+      </div>
+      <div role="img" aria-label="A dark green Volkswagen Golf on a wet coastal road" style={{ backgroundImage: 'linear-gradient(to right, var(--green-900), rgba(11,42,34,0) 35%), url(../../assets/images/hero-coastal-road.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+    </section>
   );
 }
 
-function CarStep({ q, set }) {
-  const [plate, setPlate] = React.useState(q.plate || 'KR24 BXL');
-  const [busy, setBusy] = React.useState(false);
-  const find = () => { setBusy(true); setTimeout(() => { setBusy(false); set({ plate, found: true }); }, 700); };
+// 02 · About you
+function AboutYouStep({ q, set, onBack, onNext }) {
   return (
     <>
-      <StepHead over="Step 1 of 4" title="Let's find your car" sub="Enter the registration and we'll fill in the rest." />
-      <div style={{ display: 'flex', gap: 12, alignItems: 'flex-end' }}>
-        <div style={{ width: 260 }}><Input variant="plate" label="Registration" value={plate} onChange={(e) => setPlate(e.target.value.toUpperCase())} /></div>
-        <Button size="lg" loading={busy} onClick={find} style={{ height: 56 }}>{busy ? 'Looking up' : 'Find car'}</Button>
-      </div>
-      {q.found ? (
-        <>
-          <Card variant="outline" padding="sm" style={{ marginTop: 20, display: 'flex', alignItems: 'center', gap: 16 }}>
-            <span style={{ display: 'grid', placeItems: 'center', width: 48, height: 48, borderRadius: 12, background: 'var(--bg-brand-subtle)', color: 'var(--green-700)' }}><Icon name="car" size={24} /></span>
-            <div style={{ flex: 1 }}>
-              <div style={{ font: '600 16px/22px var(--font-body)' }}>Volkswagen Golf 1.5 TSI Life</div>
-              <div style={{ font: '400 14px/20px var(--font-body)', color: 'var(--fg-3)' }}>2024 · Petrol · Manual · 5 doors</div>
-            </div>
-            <Badge tone="success" dot>Found</Badge>
-            <Button variant="ghost" size="sm">Not your car?</Button>
-          </Card>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginTop: 32 }}>
-            <Select label="Where is it kept overnight?" defaultValue="Driveway" options={['Driveway', 'Garage', 'On the street', 'Car park']} />
-            <Input label="Miles you drive a year" defaultValue="7,500" suffix="miles" hint="A rough guess is fine." />
-          </div>
-          <div className="kb-field" style={{ marginTop: 24 }}>
-            <span className="kb-field__label">What do you use it for?</span>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 6 }}>
-              <Radio name="use" label="Social only" description="Shopping, visiting friends, days out" />
-              <Radio name="use" defaultChecked label="Social and commuting" description="Includes driving to one regular place of work" />
-              <Radio name="use" label="Business" description="Driving to different places for work" />
-            </div>
-          </div>
-        </>
-      ) : null}
-    </>
-  );
-}
-
-function YouStep() {
-  return (
-    <>
-      <StepHead over="Step 2 of 4" title="A bit about you" sub="We use this to work out your price. We never sell your details." />
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
-        <Input label="First name" defaultValue="Maya" />
-        <Input label="Last name" defaultValue="Patel" />
-        <Input label="Date of birth" defaultValue="12 / 06 / 1991" iconLeft="calendar" />
-        <Input label="Postcode" defaultValue="E8 3" error="Enter your full postcode, like E8 3RL" />
-        <Select label="How long have you had your licence?" defaultValue="5–9 years" options={['Less than 1 year', '1–4 years', '5–9 years', '10+ years']} />
-        <Input label="Email" type="email" defaultValue="maya.patel@example.com" hint="We'll send your documents here." />
-      </div>
-      <div className="kb-field" style={{ marginTop: 28 }}>
-        <span className="kb-field__label">Any claims, accidents or convictions in the last 5 years?</span>
-        <div style={{ display: 'flex', gap: 28, marginTop: 6 }}><Radio name="cl" defaultChecked label="No" /><Radio name="cl" label="Yes" /></div>
-      </div>
-    </>
-  );
-}
-
-function CoverStep({ q, set }) {
-  return (
-    <>
-      <StepHead over="Step 3 of 4" title="Choose your cover" sub="Prices are per month and include Insurance Premium Tax." />
-      <div role="radiogroup" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, paddingTop: 12 }}>
-        <CoverageOption name="Third party" description="The legal minimum" price={money(PLANS.tp.price)} selected={q.plan === 'tp'} onSelect={() => set({ plan: 'tp' })}
-          features={['Damage to others', { label: 'Fire and theft', included: false }, { label: 'Your own car', included: false }, { label: 'Windscreen', included: false }]} />
-        <CoverageOption name="Fire & theft" description="Third party, plus" price={money(PLANS.tpft.price)} selected={q.plan === 'tpft'} onSelect={() => set({ plan: 'tpft' })}
-          features={['Damage to others', 'Fire and theft', { label: 'Your own car', included: false }, { label: 'Windscreen', included: false }]} />
-        <CoverageOption name="Comprehensive" description="Covers your car too" flag="Most chosen" price={money(PLANS.comp.price)} selected={q.plan === 'comp'} onSelect={() => set({ plan: 'comp' })}
-          features={['Damage to others', 'Fire and theft', 'Your own car', 'Windscreen']} />
-      </div>
-      <h2 className="kb-h3" style={{ margin: '36px 0 14px' }}>Extras</h2>
-      <Card variant="outline" padding="sm" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-        <Checkbox checked={q.breakdown} onChange={(e) => set({ breakdown: e.target.checked })} label="Breakdown cover · £6.50/month" description="24/7 roadside help and recovery anywhere in the UK" />
-        <Checkbox checked={q.courtesy} onChange={(e) => set({ courtesy: e.target.checked })} label="Courtesy car · £3.20/month" description="A small car while yours is being repaired" />
-      </Card>
-      <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8, marginTop: 24, maxWidth: 320 }}>
-        <div style={{ flex: 1 }}><Select label="Voluntary excess" defaultValue="£100" options={['£0', '£100', '£250', '£500']} hint="On top of the £250 compulsory excess." /></div>
-        <div style={{ paddingBottom: 30 }}><Tooltip content="Choosing a higher excess lowers your price, but you pay more if you claim."><IconButton icon="info" label="About excess" size="sm" /></Tooltip></div>
-      </div>
-    </>
-  );
-}
-
-function PayStep({ q, set, total }) {
-  return (
-    <>
-      <StepHead over="Step 4 of 4" title="Pay and start your cover" />
-      <Tabs variant="pill" value={q.freq} onChange={(f) => set({ freq: f })} items={[{ id: 'monthly', label: 'Monthly' }, { id: 'annual', label: 'Annually · save 6%' }]} />
-      <Card variant="outline" padding="md" style={{ marginTop: 20, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
-        <div style={{ gridColumn: '1 / -1' }}><Input label="Card number" defaultValue="4417 1234 5678 4417" iconLeft="credit-card" /></div>
-        <Input label="Expiry" defaultValue="08 / 29" />
-        <Input label="Security code" defaultValue="•••" hint="3 digits on the back" />
-        <div style={{ gridColumn: '1 / -1' }}><Input label="Cover starts" defaultValue="Today, 25 Sep 2026" iconLeft="calendar" /></div>
-      </Card>
-      <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 14 }}>
-        <Alert tone="info">You can cancel within 14 days for a full refund, minus the days you were covered.</Alert>
-        <Checkbox checked={q.agree} onChange={(e) => set({ agree: e.target.checked })} label="I've read the policy summary and my answers are correct" />
-      </div>
-    </>
-  );
-}
-
-function Summary({ q, total, step, onNext, onBack }) {
-  const labels = ['Continue', 'Continue', 'Continue', 'Pay ' + money(total) + ' and start cover'];
-  const disabled = (step === 0 && !q.found) || (step === 3 && !q.agree);
-  return (
-    <Card padding="none" style={{ position: 'sticky', top: 96, overflow: 'hidden' }}>
-      <div style={{ padding: 24, background: 'var(--green-900)', color: '#fff' }}>
-        <div className="kb-overline" style={{ color: 'var(--fg-inverse-2)' }}>{q.freq === 'annual' ? 'Your price per year' : 'Your price per month'}</div>
-        <div className="kb-num" style={{ font: '800 48px/52px var(--font-display)', letterSpacing: '-.035em', marginTop: 6 }}>{step < 2 ? '—' : money(total)}</div>
-        <div style={{ font: '400 14px/20px var(--font-body)', color: 'var(--fg-inverse-2)', marginTop: 4 }}>{step < 2 ? 'Your price appears once we know your car and you.' : PLANS[q.plan].name + (q.breakdown ? ' + breakdown' : '') + (q.courtesy ? ' + courtesy car' : '')}</div>
-      </div>
-      <div style={{ padding: '8px 24px 24px' }}>
-        {[['Car', q.found ? <PlateTag>{q.plate}</PlateTag> : '—'], ['Driver', step > 0 ? 'Maya Patel' : '—'], ['Excess', '£350']].map(([k, v]) => (
-          <div key={k} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderBottom: '1px solid var(--border-1)', font: '400 14px/20px var(--font-body)' }}><span style={{ color: 'var(--fg-3)' }}>{k}</span><span style={{ fontWeight: 600 }}>{v}</span></div>
-        ))}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 20 }}>
-          <Button size="lg" fullWidth disabled={disabled} iconRight={step < 3 ? 'arrow-right' : 'lock'} onClick={onNext} variant={step === 3 ? 'accent' : 'primary'}>{labels[step]}</Button>
-          {step > 0 ? <Button variant="ghost" fullWidth onClick={onBack}>Back</Button> : null}
+      <Stepper steps={QUOTE_STEPS} current={1} />
+      <StepHead over="Step 2 of 4" title="Now, about you" sub="We’ve found your car. Tell us who’ll be driving it." />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, alignItems: 'start' }}>
+        <InfoCard title="Volkswagen Golf" icon="car" badge={<Badge tone="success" dot>Found</Badge>}>
+          <KV rows={[['Registration', q.plate], ['Model', 'Life TSI 130'], ['Year', '2024']]} />
+        </InfoCard>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 360 }}>
+          <Input label="Full name" value={q.name} onChange={(e) => set({ name: e.target.value })} />
+          <Input label="Date of birth" defaultValue="12 June 1992" />
+          <Select label="Occupation" defaultValue="Product designer" options={['Product designer', 'Teacher', 'Nurse', 'Software engineer', 'Retired']} />
+          <Select label="Where is the car kept overnight?" defaultValue="Driveway" options={['Driveway', 'Garage', 'On the street', 'Car park']} />
         </div>
       </div>
-    </Card>
+      <ActionRow left={<Button variant="ghost" size="sm" onClick={onBack}>Back</Button>} right={<Button variant="accent" iconRight="arrow-right" onClick={onNext}>See cover options</Button>} />
+    </>
   );
 }
 
-Object.assign(window, { CarStep, YouStep, CoverStep, PayStep, Summary, PLANS, money });
+// 03 · Choose cover
+function CoverStep({ q, set, onNext }) {
+  const plan = PLANS[q.plan];
+  return (
+    <>
+      <Stepper steps={QUOTE_STEPS} current={2} />
+      <StepHead over="Your quote" title="Choose your cover" sub="All options include our UK repair network and a 24/7 claims line." right={<Badge>Saved for 30 days</Badge>} />
+      <div role="radiogroup" aria-label="Cover level" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, paddingTop: 8 }}>
+        {Object.entries(PLANS).map(([id, p]) => (
+          <CoverageOption key={id} name={p.name} description={p.desc} price={money(p.price)} flag={p.flag} features={p.features} selected={q.plan === id} onSelect={() => set({ plan: id })} />
+        ))}
+      </div>
+      <SelectedBar value={`${plan.name} · ${money(plan.price)}/month`} action={<Button variant="accent" size="sm" iconRight="arrow-right" onClick={onNext}>Continue</Button>} />
+    </>
+  );
+}
+
+// 04 · Review and pay
+function PayStep({ q, set, onPay }) {
+  const plan = PLANS[q.plan];
+  const yearly = q.freq === 'annual';
+  const due = yearly ? annual(plan.price) : plan.price;
+  return (
+    <>
+      <Stepper steps={QUOTE_STEPS} current={3} />
+      <StepHead over="Step 4 of 4" title="Review and pay" sub={`Your ${plan.name} cover starts today, 1 October 2026.`} />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, alignItems: 'start' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          <InfoCard title="How would you like to pay?">
+            <Radio name="freq" checked={!yearly} onChange={() => set({ freq: 'monthly' })} label="Monthly" description={`12 payments of ${money(plan.price)}`} />
+            <Radio name="freq" checked={yearly} onChange={() => set({ freq: 'annual' })} label="Annually" description={`One payment of ${money(annual(plan.price))} — save £19.80`} />
+          </InfoCard>
+          <InfoCard title="Payment card" icon="credit-card">
+            <Input label="Card number" defaultValue="•••• •••• •••• 4242" inputMode="numeric" />
+          </InfoCard>
+        </div>
+        <InfoCard title={plan.name} badge={<Badge tone="accent">Selected</Badge>}>
+          <KV rows={[['Policyholder', q.name], ['Vehicle', q.plate], ['Address', '18 Mare Street, E8 3RL'], ['Voluntary excess', '£350'], [yearly ? 'Annual payment' : 'Monthly payment', money(due), 'brand']]} />
+          <Checkbox checked={q.agree} onChange={(e) => set({ agree: e.target.checked })} label="Confirm and agree" description="I agree to the policy terms and confirm my details are correct." />
+          <Button variant="accent" size="lg" fullWidth iconRight="arrow-right" disabled={!q.agree} onClick={onPay}>{`Pay ${money(due)} and start cover`}</Button>
+        </InfoCard>
+      </div>
+    </>
+  );
+}
+
+// 05 · Active policy overview (also the Policy nav destination once bought)
+function PolicyOverview({ q, justBought }) {
+  const [tab, setTab] = React.useState('overview');
+  const plan = PLANS[q.plan];
+  return (
+    <>
+      <StepHead over="Your policy" title={`You’re covered, ${q.name.split(' ')[0]}`} sub="Policy KRB-492810 · Started 1 Oct 2026" right={<Badge tone="success" dot>Active</Badge>} />
+      {justBought ? <Alert tone="success" title={`Payment received · ${money(q.freq === 'annual' ? annual(plan.price) : plan.price)}`}>Your documents are ready and your cover is active.</Alert> : null}
+      <Tabs value={tab} onChange={setTab} items={[{ id: 'overview', label: 'Overview' }, { id: 'cover', label: 'Cover' }, { id: 'documents', label: 'Documents', count: DOCUMENTS.length }, { id: 'payments', label: 'Payments' }]} />
+      {tab === 'overview' ? (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 16, alignItems: 'start' }}>
+          <PolicyCard until="30 Sep 2027" sub={`${plan.name} · £350 excess`} />
+          <InfoCard>
+            <Switch labelPosition="end" defaultChecked label={<span>Auto-renew<span style={{ display: 'block', font: '400 13px/18px var(--font-body)', color: 'var(--fg-3)' }}>We’ll remind you before renewal.</span></span>} />
+            <KV rows={[['Next payment', '1 Nov 2026'], ['Payment method', 'Visa •••• 4242'], ['Monthly amount', money(plan.price), 'brand']]} />
+          </InfoCard>
+          <InfoCard title="Documents">
+            <div>{DOCUMENTS.map((d, i) => <DocRow key={d} name={d} last={i === DOCUMENTS.length - 1} />)}</div>
+          </InfoCard>
+        </div>
+      ) : tab === 'cover' ? (
+        <InfoCard title={plan.name} style={{ maxWidth: 480 }}>
+          {plan.features.map((f) => { const it = typeof f === 'string' ? { label: f, included: true } : f; return (
+            <div key={it.label} style={{ display: 'flex', gap: 10, font: '400 14px/20px var(--font-body)', color: it.included ? 'var(--fg-1)' : 'var(--fg-4)' }}><Icon name={it.included ? 'check' : 'minus'} size={18} color={it.included ? 'var(--green-600)' : 'var(--fg-4)'} />{it.label}</div>
+          ); })}
+          <KV rows={[['Voluntary excess', '£350'], ['Renews', '30 Sep 2027']]} />
+        </InfoCard>
+      ) : tab === 'documents' ? (
+        <InfoCard title="Documents" style={{ maxWidth: 480 }}><div>{DOCUMENTS.map((d, i) => <DocRow key={d} name={d} last={i === DOCUMENTS.length - 1} />)}</div></InfoCard>
+      ) : (
+        <InfoCard title="Payments" style={{ maxWidth: 480 }}>
+          <KV rows={[['1 Oct 2026', money(plan.price)], ['Next: 1 Nov 2026', money(plan.price)], ['Payment method', 'Visa •••• 4242']]} />
+        </InfoCard>
+      )}
+    </>
+  );
+}
+
+Object.assign(window, { Landing, AboutYouStep, CoverStep, PayStep, PolicyOverview });
 })();
