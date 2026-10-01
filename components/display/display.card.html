@@ -1,0 +1,18 @@
+<!-- @dsCard group="Components" viewport="700x330" name="Display" subtitle="Card, Badge, Tag, Icon, Wordmark" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;padding:24px;background:var(--bg-page)}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.col{display:flex;flex-direction:column;gap:16px}.lbl{font:500 11px/16px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);width:84px;flex:none}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script></head><body><div id="root"></div>
+<script type="text/babel">
+const { Card, Badge, Tag, Icon, Wordmark } = window.KerbDesignSystem_549f9e;
+function App(){const [s,setS]=React.useState('open');return(<div className="col">
+<div style={{display:'grid',gridTemplateColumns:'1.2fr 1fr',gap:16}}>
+<Card variant="inverse" padding="md"><div className="row" style={{justifyContent:'space-between'}}><Wordmark tone="inverse" size={22} /><Badge tone="accent">Comprehensive</Badge></div><div className="kb-overline" style={{marginTop:28,color:'var(--fg-inverse-2)'}}>KR24 BXL · Volkswagen Golf</div><div className="kb-h2" style={{marginTop:4}}>Covered until 14 Mar 2027</div></Card>
+<Card variant="raised" padding="md"><div className="row" style={{justifyContent:'space-between'}}><Icon name="file-text" size={24} color="var(--green-600)" /><Badge tone="warning" dot>In review</Badge></div><div className="kb-h3" style={{marginTop:20}}>Claim KRB-C-20931</div><div className="kb-body-s" style={{color:'var(--fg-3)'}}>Rear bumper · opened 21 Sep</div></Card></div>
+<div className="row"><Badge>Draft</Badge><Badge tone="brand">Named driver</Badge><Badge tone="success" dot>Active</Badge><Badge tone="warning" dot>Action needed</Badge><Badge tone="danger" dot>Payment failed</Badge><Badge tone="info">New</Badge><Badge tone="accent">Most chosen</Badge></div>
+<div className="row"><Tag selected={s==='open'} onClick={()=>setS('open')}>Open</Tag><Tag selected={s==='closed'} onClick={()=>setS('closed')}>Closed</Tag><Tag icon="car">Rear-ended</Tag><Tag icon="user" onRemove={()=>{}}>Sam Okafor</Tag></div>
+</div>)}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script></body></html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Kerb case study deck" description="1920×1080 portfolio deck presenting the Kerb design system: foundations, components and product screens" -->
+<helmet><script src="./ds-base.js"></script><style>body{margin:0;background:#0B2A22}</style></helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+<section data-label="Title" style="background:#0B2A22;color:#fff;padding:100px 120px 80px;display:flex;flex-direction:column;font-family:var(--font-body)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#E4F55A">Portfolio case study · 2026</div>
+<div style="margin-top:auto;display:flex;align-items:baseline;gap:12px;font:800 260px/1 var(--font-display);letter-spacing:-.05em"><span>kerb</span><span style="display:inline-block;width:72px;height:72px;border-radius:12px;background:#E4F55A"></span></div>
+<h1 style="margin:40px 0 0;font:700 72px/80px var(--font-display);letter-spacing:-.03em">Kerb Design System</h1>
+<p style="margin:16px 0 0;font:400 36px/48px var(--font-body);color:rgba(255,255,255,.72);max-width:1200px">Foundations, components and product screens for a fictional digital car insurer</p>
+</section>
+<section data-label="The brief" style="background:#F5F4EF;color:#1A1916;padding:100px 120px 80px;display:flex;flex-direction:column;font-family:var(--font-body)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#145240">01 · Context</div>
+<h2 style="margin:16px 0 0;font:700 72px/80px var(--font-display);letter-spacing:-.03em">The brief</h2>
+<div style="display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:48px;margin-top:72px">
+<p style="margin:0;font:600 44px/56px var(--font-display);letter-spacing:-.02em;text-wrap:pretty">Make getting a quote, managing a policy and filing a claim simple, transparent and stress-free.</p>
+<div style="background:#fff;border-radius:24px;padding:40px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#5C5950">Mobile</div>
+<h3 style="margin:12px 0 24px;font:700 44px/52px var(--font-display);letter-spacing:-.02em">Kerb app</h3>
+<p style="margin:0 0 12px;font:400 30px/42px var(--font-body);color:#413F38">Active policy at a glance</p>
+<p style="margin:0 0 12px;font:400 30px/42px var(--font-body);color:#413F38">Documents and drivers</p>
+<p style="margin:0;font:400 30px/42px var(--font-body);color:#413F38">Four-step claim flow and tracker</p>
+</div>
+<div style="background:#fff;border-radius:24px;padding:40px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#5C5950">Desktop</div>
+<h3 style="margin:12px 0 24px;font:700 44px/52px var(--font-display);letter-spacing:-.02em">Kerb web</h3>
+<p style="margin:0 0 12px;font:400 30px/42px var(--font-body);color:#413F38">Quote journey from plate to payment</p>
+<p style="margin:0 0 12px;font:400 30px/42px var(--font-body);color:#413F38">Account dashboard</p>
+<p style="margin:0;font:400 30px/42px var(--font-body);color:#413F38">Renewals and claims overview</p>
+</div>
+</div>
+</section>
+<section data-label="Principles" style="background:#F5F4EF;color:#1A1916;padding:100px 120px 80px;display:flex;flex-direction:column;font-family:var(--font-body)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#145240">02 · Approach</div>
+<h2 style="margin:16px 0 0;font:700 72px/80px var(--font-display);letter-spacing:-.03em">Design principles</h2>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:96px">
+<div style="border-top:3px solid #0B2A22;padding-top:32px"><div style="font:800 96px/1 var(--font-display);letter-spacing:-.04em;color:#17694F">01</div><h3 style="margin:32px 0 16px;font:700 44px/52px var(--font-display);letter-spacing:-.02em">Plain English</h3><p style="margin:0;font:400 30px/42px var(--font-body);color:#413F38;text-wrap:pretty">Insurance terms stay, but each one is explained where it appears.</p></div>
+<div style="border-top:3px solid #0B2A22;padding-top:32px"><div style="font:800 96px/1 var(--font-display);letter-spacing:-.04em;color:#17694F">02</div><h3 style="margin:32px 0 16px;font:700 44px/52px var(--font-display);letter-spacing:-.02em">Show what's next</h3><p style="margin:0;font:400 30px/42px var(--font-body);color:#413F38;text-wrap:pretty">Every status says what happens next, how long it takes and whether you need to act.</p></div>
+<div style="border-top:3px solid #0B2A22;padding-top:32px"><div style="font:800 96px/1 var(--font-display);letter-spacing:-.04em;color:#17694F">03</div><h3 style="margin:32px 0 16px;font:700 44px/52px var(--font-display);letter-spacing:-.02em">One clear action</h3><p style="margin:0;font:400 30px/42px var(--font-body);color:#413F38;text-wrap:pretty">Only one button per screen uses the yellow accent: the step that matters most.</p></div>
+</div>
+</section>
+<section data-label="Colour" style="background:#F5F4EF;color:#1A1916;padding:100px 120px 80px;display:flex;flex-direction:column;font-family:var(--font-body)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#145240">03 · Foundations</div>
+<h2 style="margin:16px 0 0;font:700 72px/80px var(--font-display);letter-spacing:-.03em">Colour</h2>
+<div style="display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:1fr auto;gap:24px;margin-top:64px;flex:1">
+<div style="background:#0B2A22;border-radius:24px;padding:40px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff"><div style="font:700 44px/52px var(--font-display)">Evergreen</div><div style="font:400 28px/40px var(--font-body);color:rgba(255,255,255,.72)">Brand, hero surfaces, primary actions</div><div style="font:500 24px/32px var(--font-mono);margin-top:12px">#0B2A22 · #17694F</div></div>
+<div style="background:#E4F55A;border-radius:24px;padding:40px;display:flex;flex-direction:column;justify-content:flex-end;color:#0B2A22"><div style="font:700 44px/52px var(--font-display)">Marker</div><div style="font:400 28px/40px var(--font-body)">One accent per screen</div><div style="font:500 24px/32px var(--font-mono);margin-top:12px">#E4F55A</div></div>
+<div style="background:#fff;border-radius:24px;padding:40px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 0 0 1px #DEDBD2"><div style="font:700 44px/52px var(--font-display)">Stone</div><div style="font:400 28px/40px var(--font-body);color:#5C5950">Warm neutrals for text and page</div><div style="font:500 24px/32px var(--font-mono);margin-top:12px;color:#5C5950">#F5F4EF · #1A1916</div></div>
+<div style="grid-column:1 / -1;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+<div style="display:flex;align-items:center;gap:20px;background:#EFF7F3;border-radius:16px;padding:24px 28px;box-shadow:inset 0 0 0 1px #B9DECF"><span style="width:40px;height:40px;border-radius:50%;background:#17694F;flex:none"></span><span style="font:600 28px/36px var(--font-body);color:#145240">Success</span></div>
+<div style="display:flex;align-items:center;gap:20px;background:#FFF3DC;border-radius:16px;padding:24px 28px;box-shadow:inset 0 0 0 1px #F7DDA8"><span style="width:40px;height:40px;border-radius:50%;background:#A86200;flex:none"></span><span style="font:600 28px/36px var(--font-body);color:#A86200">Warning</span></div>
+<div style="display:flex;align-items:center;gap:20px;background:#FDECEA;border-radius:16px;padding:24px 28px;box-shadow:inset 0 0 0 1px #F6C9C4"><span style="width:40px;height:40px;border-radius:50%;background:#C2352B;flex:none"></span><span style="font:600 28px/36px var(--font-body);color:#A12A21">Danger</span></div>
+<div style="display:flex;align-items:center;gap:20px;background:#E9F0FD;border-radius:16px;padding:24px 28px;box-shadow:inset 0 0 0 1px #C6D6F6"><span style="width:40px;height:40px;border-radius:50%;background:#2159C4;flex:none"></span><span style="font:600 28px/36px var(--font-body);color:#2159C4">Info</span></div>
+</div>
+</div>
+</section>
+<section data-label="Typography" style="background:#F5F4EF;color:#1A1916;padding:100px 120px 80px;display:flex;flex-direction:column;font-family:var(--font-body)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#145240">03 · Foundations</div>
+<h2 style="margin:16px 0 0;font:700 72px/80px var(--font-display);letter-spacing:-.03em">Typography</h2>
+<div style="display:flex;flex-direction:column;margin-top:56px">
+<div style="display:grid;grid-template-columns:420px 1fr;align-items:center;padding:36px 0;border-bottom:1px solid #DEDBD2"><div><div style="font:600 30px/40px var(--font-body)">Bricolage Grotesque</div><div style="font:500 24px/32px var(--font-mono);color:#5C5950">Display · 800 / 700</div></div><div style="font:800 110px/1 var(--font-display);letter-spacing:-.04em">You're covered.</div></div>
+<div style="display:grid;grid-template-columns:420px 1fr;align-items:center;padding:36px 0;border-bottom:1px solid #DEDBD2"><div><div style="font:600 30px/40px var(--font-body)">Instrument Sans</div><div style="font:500 24px/32px var(--font-mono);color:#5C5950">Body and UI · 400–600</div></div><div style="font:400 40px/56px var(--font-body);color:#413F38">Your excess is £250. That's what you pay towards a claim.</div></div>
+<div style="display:grid;grid-template-columns:420px 1fr;align-items:center;padding:36px 0"><div><div style="font:600 30px/40px var(--font-body)">IBM Plex Mono</div><div style="font:500 24px/32px var(--font-mono);color:#5C5950">References and plates</div></div><div style="display:flex;gap:40px;align-items:center"><span style="font:500 48px/1 var(--font-mono)">KRB-C-20931</span><span style="font:600 48px/1 var(--font-mono);letter-spacing:.12em;background:#EEF98F;color:#0B2A22;padding:12px 20px;border-radius:10px;box-shadow:inset 0 0 0 3px #0B2A22">KR24 BXL</span></div></div>
+</div>
+</section>
+<section data-label="Spacing and shape" style="background:#F5F4EF;color:#1A1916;padding:100px 120px 80px;display:flex;flex-direction:column;font-family:var(--font-body)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#145240">03 · Foundations</div>
+<h2 style="margin:16px 0 0;font:700 72px/80px var(--font-display);letter-spacing:-.03em">Spacing and shape</h2>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-top:auto;margin-bottom:auto">
+<div><div style="font:800 180px/1 var(--font-display);letter-spacing:-.05em;color:#17694F">4<span style="font-size:72px">px</span></div><div style="font:600 32px/44px var(--font-body);margin-top:24px">Spacing unit</div><div style="font:400 28px/40px var(--font-body);color:#5C5950">20px mobile gutters, 24px between groups</div></div>
+<div><div style="font:800 180px/1 var(--font-display);letter-spacing:-.05em;color:#17694F">16</div><div style="font:600 32px/44px var(--font-body);margin-top:24px">Card radius</div><div style="font:400 28px/40px var(--font-body);color:#5C5950">Pills for actions, 12 for inputs, 24 for dialogs</div></div>
+<div><div style="font:800 180px/1 var(--font-display);letter-spacing:-.05em;color:#17694F">3</div><div style="font:600 32px/44px var(--font-body);margin-top:24px">Elevation levels</div><div style="font:400 28px/40px var(--font-body);color:#5C5950">Green-tinted shadows with a built-in hairline</div></div>
+<div><div style="font:800 180px/1 var(--font-display);letter-spacing:-.05em;color:#17694F">200<span style="font-size:72px">ms</span></div><div style="font:600 32px/44px var(--font-body);margin-top:24px">Base motion</div><div style="font:400 28px/40px var(--font-body);color:#5C5950">120 for press, 320 for dialogs and sheets</div></div>
+</div>
+</section>
+<section data-label="Components" style="background:#F5F4EF;color:#1A1916;padding:100px 120px 80px;display:flex;flex-direction:column;font-family:var(--font-body)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#145240">04 · System</div>
+<h2 style="margin:16px 0 0;font:700 72px/80px var(--font-display);letter-spacing:-.03em">Component library</h2>
+<div style="display:flex;gap:20px;align-items:center;margin-top:56px">
+<span style="display:inline-flex;align-items:center;height:72px;padding:0 36px;border-radius:999px;background:#17694F;color:#fff;font:600 28px/1 var(--font-body)">Continue</span>
+<span style="display:inline-flex;align-items:center;height:72px;padding:0 36px;border-radius:999px;background:#E4F55A;color:#0B2A22;font:600 28px/1 var(--font-body)">Start a claim</span>
+<span style="display:inline-flex;align-items:center;height:72px;padding:0 36px;border-radius:999px;background:#fff;color:#1A1916;font:600 28px/1 var(--font-body);box-shadow:inset 0 0 0 2px #C7C3B8">Documents</span>
+<span style="display:inline-flex;align-items:center;height:48px;padding:0 20px;border-radius:999px;background:#EFF7F3;color:#145240;font:600 24px/1 var(--font-body);box-shadow:inset 0 0 0 1px #B9DECF;margin-left:24px">Active</span>
+<span style="display:inline-flex;align-items:center;height:48px;padding:0 20px;border-radius:999px;background:#FFF3DC;color:#A86200;font:600 24px/1 var(--font-body);box-shadow:inset 0 0 0 1px #F7DDA8">In review</span>
+<span style="display:inline-flex;align-items:center;height:48px;padding:0 20px;border-radius:999px;background:#E4F55A;color:#0B2A22;font:600 24px/1 var(--font-body)">Most chosen</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px">
+<div style="background:#fff;border-radius:20px;padding:32px 36px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#5C5950">Actions</div><div style="font:600 32px/44px var(--font-body);margin-top:8px">Button, IconButton</div></div>
+<div style="background:#fff;border-radius:20px;padding:32px 36px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#5C5950">Forms</div><div style="font:600 32px/44px var(--font-body);margin-top:8px">Input, Select, Checkbox, Radio, Switch</div></div>
+<div style="background:#fff;border-radius:20px;padding:32px 36px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#5C5950">Display</div><div style="font:600 32px/44px var(--font-body);margin-top:8px">Card, Badge, Tag, Icon, Wordmark</div></div>
+<div style="background:#fff;border-radius:20px;padding:32px 36px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#5C5950">Navigation</div><div style="font:600 32px/44px var(--font-body);margin-top:8px">Tabs, Stepper</div></div>
+<div style="background:#fff;border-radius:20px;padding:32px 36px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#5C5950">Feedback</div><div style="font:600 32px/44px var(--font-body);margin-top:8px">Alert, Toast, Tooltip, Dialog</div></div>
+<div style="background:#0B2A22;color:#fff;border-radius:20px;padding:32px 36px"><div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#E4F55A">Insurance</div><div style="font:600 32px/44px var(--font-body);margin-top:8px">CoverageOption, Timeline</div></div>
+</div>
+</section>
+<section data-label="Voice" style="background:#F5F4EF;color:#1A1916;padding:100px 120px 80px;display:flex;flex-direction:column;font-family:var(--font-body)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#145240">04 · System</div>
+<h2 style="margin:16px 0 0;font:700 72px/80px var(--font-display);letter-spacing:-.03em">Voice and tone</h2>
+<div style="display:grid;grid-template-columns:200px 1fr 1fr;column-gap:48px;margin-top:64px">
+<div></div><div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#145240;padding-bottom:20px">We say</div><div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#7A766B;padding-bottom:20px">Instead of</div>
+<div style="font:600 28px/40px var(--font-body);color:#5C5950;padding:28px 0;border-top:1px solid #DEDBD2">Terms</div><div style="font:500 34px/46px var(--font-body);padding:28px 0;border-top:1px solid #DEDBD2">Your excess is £250. That's what you pay towards a claim.</div><div style="font:400 30px/42px var(--font-body);color:#7A766B;padding:28px 0;border-top:1px solid #DEDBD2">A compulsory excess of £250 applies to all claims.</div>
+<div style="font:600 28px/40px var(--font-body);color:#5C5950;padding:28px 0;border-top:1px solid #DEDBD2">Status</div><div style="font:500 34px/46px var(--font-body);padding:28px 0;border-top:1px solid #DEDBD2">We've got your photos. An assessor will look at them by Thursday.</div><div style="font:400 30px/42px var(--font-body);color:#7A766B;padding:28px 0;border-top:1px solid #DEDBD2">Your claim documentation is being processed.</div>
+<div style="font:600 28px/40px var(--font-body);color:#5C5950;padding:28px 0;border-top:1px solid #DEDBD2">Errors</div><div style="font:500 34px/46px var(--font-body);padding:28px 0;border-top:1px solid #DEDBD2">Enter your full postcode, like E8 3RL.</div><div style="font:400 30px/42px var(--font-body);color:#7A766B;padding:28px 0;border-top:1px solid #DEDBD2">Invalid input.</div>
+</div>
+</section>
+<section data-label="Quote journey" style="background:#F5F4EF;color:#1A1916;padding:100px 120px 80px;display:flex;flex-direction:column;font-family:var(--font-body)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#145240">05 · Product</div>
+<h2 style="margin:16px 0 0;font:700 72px/80px var(--font-display);letter-spacing:-.03em">Quote journey</h2>
+<p style="margin:16px 0 0;font:400 32px/44px var(--font-body);color:#413F38">Car, you, cover, pay. The cover step keeps the same rows on every plan so they're easy to compare.</p>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:64px">
+<div style="background:#fff;border-radius:24px;padding:40px;box-shadow:inset 0 0 0 2px #DEDBD2"><div style="font:700 36px/44px var(--font-display)">Third party</div><div style="font:400 26px/36px var(--font-body);color:#5C5950">The legal minimum</div><div style="font:700 64px/72px var(--font-display);letter-spacing:-.03em;margin-top:28px">£29.40<span style="font:400 26px var(--font-body);color:#5C5950"> /month</span></div><div style="border-top:1px solid #DEDBD2;margin-top:28px;padding-top:24px;display:flex;flex-direction:column;gap:14px;font:400 28px/36px var(--font-body)"><span>Damage to others</span><span style="color:#A09C90">Fire and theft</span><span style="color:#A09C90">Your own car</span></div></div>
+<div style="position:relative;background:#fff;border-radius:24px;padding:40px;box-shadow:inset 0 0 0 3px #17694F,0 0 0 6px rgba(23,105,79,.22)"><span style="position:absolute;top:-22px;left:36px;height:44px;padding:0 20px;display:inline-flex;align-items:center;border-radius:999px;background:#E4F55A;color:#0B2A22;font:600 24px/1 var(--font-body)">Most chosen</span><div style="font:700 36px/44px var(--font-display)">Comprehensive</div><div style="font:400 26px/36px var(--font-body);color:#5C5950">Covers your car too</div><div style="font:700 64px/72px var(--font-display);letter-spacing:-.03em;margin-top:28px">£38.20<span style="font:400 26px var(--font-body);color:#5C5950"> /month</span></div><div style="border-top:1px solid #DEDBD2;margin-top:28px;padding-top:24px;display:flex;flex-direction:column;gap:14px;font:400 28px/36px var(--font-body)"><span>Damage to others</span><span>Fire and theft</span><span>Your own car</span></div></div>
+<div style="background:#0B2A22;color:#fff;border-radius:24px;padding:40px;display:flex;flex-direction:column"><div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.72)">Your price per month</div><div style="font:800 96px/1 var(--font-display);letter-spacing:-.04em;margin-top:20px">£44.70</div><div style="font:400 26px/36px var(--font-body);color:rgba(255,255,255,.72);margin-top:12px">Comprehensive + breakdown</div><span style="margin-top:auto;display:flex;align-items:center;justify-content:center;height:72px;border-radius:999px;background:#E4F55A;color:#0B2A22;font:600 28px/1 var(--font-body)">Pay and start cover</span></div>
+</div>
+</section>
+<section data-label="Claim flow" style="background:#F5F4EF;color:#1A1916;padding:100px 120px 80px;display:flex;flex-direction:column;font-family:var(--font-body)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#145240">05 · Product</div>
+<h2 style="margin:16px 0 0;font:700 72px/80px var(--font-display);letter-spacing:-.03em">Claim flow</h2>
+<p style="margin:16px 0 0;font:400 32px/44px var(--font-body);color:#413F38">Four short steps on mobile, one question group per screen. Closing mid-flow saves answers for 7 days.</p>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:56px">
+<div style="background:#fff;border-radius:28px;padding:32px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px"><span style="height:6px;border-radius:6px;background:#17694F"></span><span style="height:6px;border-radius:6px;background:#DEDBD2"></span><span style="height:6px;border-radius:6px;background:#DEDBD2"></span><span style="height:6px;border-radius:6px;background:#DEDBD2"></span></div><div style="font:500 24px/32px var(--font-mono);color:#5C5950;margin-top:28px">Step 1</div><div style="font:700 36px/44px var(--font-display);margin-top:4px">What happened?</div><div style="margin-top:24px;padding:18px 20px;border-radius:14px;box-shadow:inset 0 0 0 2px #17694F;font:500 24px/32px var(--font-body)">Collision with another vehicle</div><div style="margin-top:12px;padding:18px 20px;border-radius:14px;box-shadow:inset 0 0 0 1px #DEDBD2;font:500 24px/32px var(--font-body)">Damaged while parked</div></div>
+<div style="background:#fff;border-radius:28px;padding:32px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px"><span style="height:6px;border-radius:6px;background:#17694F"></span><span style="height:6px;border-radius:6px;background:#17694F"></span><span style="height:6px;border-radius:6px;background:#DEDBD2"></span><span style="height:6px;border-radius:6px;background:#DEDBD2"></span></div><div style="font:500 24px/32px var(--font-mono);color:#5C5950;margin-top:28px">Step 2</div><div style="font:700 36px/44px var(--font-display);margin-top:4px">When and where?</div><div style="margin-top:24px;padding:18px 20px;border-radius:12px;box-shadow:inset 0 0 0 1px #C7C3B8;font:400 24px/32px var(--font-body)">21 Sep 2026, 17:40</div><div style="margin-top:12px;padding:14px 20px;border-radius:10px;background:#EEF98F;box-shadow:inset 0 0 0 2px #0B2A22;font:600 26px/36px var(--font-mono);letter-spacing:.1em;color:#0B2A22">AB12 CDE</div></div>
+<div style="background:#fff;border-radius:28px;padding:32px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px"><span style="height:6px;border-radius:6px;background:#17694F"></span><span style="height:6px;border-radius:6px;background:#17694F"></span><span style="height:6px;border-radius:6px;background:#17694F"></span><span style="height:6px;border-radius:6px;background:#DEDBD2"></span></div><div style="font:500 24px/32px var(--font-mono);color:#5C5950;margin-top:28px">Step 3</div><div style="font:700 36px/44px var(--font-display);margin-top:4px">Add photos</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px"><span style="height:120px;border-radius:14px;background:#DEDBD2"></span><span style="height:120px;border-radius:14px;background:#DEDBD2"></span></div></div>
+<div style="background:#fff;border-radius:28px;padding:32px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px"><span style="height:6px;border-radius:6px;background:#17694F"></span><span style="height:6px;border-radius:6px;background:#17694F"></span><span style="height:6px;border-radius:6px;background:#17694F"></span><span style="height:6px;border-radius:6px;background:#17694F"></span></div><div style="font:500 24px/32px var(--font-mono);color:#5C5950;margin-top:28px">Step 4</div><div style="font:700 36px/44px var(--font-display);margin-top:4px">Check and submit</div><div style="margin-top:24px;font:400 24px/34px var(--font-body);color:#413F38">Summary with edit links, then a plain-English declaration</div><span style="margin-top:20px;display:flex;align-items:center;justify-content:center;height:64px;border-radius:999px;background:#17694F;color:#fff;font:600 26px/1 var(--font-body)">Submit claim</span></div>
+</div>
+</section>
+<section data-label="Dashboard" style="background:#F5F4EF;color:#1A1916;padding:100px 120px 80px;display:flex;flex-direction:column;font-family:var(--font-body)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#145240">05 · Product</div>
+<h2 style="margin:16px 0 0;font:700 72px/80px var(--font-display);letter-spacing:-.03em">Account dashboard</h2>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:56px">
+<div style="background:#fff;border-radius:20px;padding:32px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="font:500 24px/32px var(--font-body);color:#5C5950">Monthly premium</div><div style="font:700 60px/68px var(--font-display);letter-spacing:-.03em;margin-top:8px">£71.50</div></div>
+<div style="background:#fff;border-radius:20px;padding:32px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="font:500 24px/32px var(--font-body);color:#5C5950">Next payment</div><div style="font:700 60px/68px var(--font-display);letter-spacing:-.03em;margin-top:8px">1 Oct</div></div>
+<div style="background:#fff;border-radius:20px;padding:32px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="font:500 24px/32px var(--font-body);color:#5C5950">No-claims discount</div><div style="font:700 60px/68px var(--font-display);letter-spacing:-.03em;margin-top:8px">5 yrs</div></div>
+<div style="background:#fff;border-radius:20px;padding:32px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)"><div style="font:500 24px/32px var(--font-body);color:#5C5950">Open claims</div><div style="font:700 60px/68px var(--font-display);letter-spacing:-.03em;margin-top:8px">1</div></div>
+</div>
+<div style="background:#fff;border-radius:20px;margin-top:24px;padding:12px 40px;box-shadow:0 1px 2px rgba(11,42,34,.06),0 0 0 1px rgba(11,42,34,.06)">
+<div style="display:grid;grid-template-columns:1.6fr 1.4fr 1fr 1fr 1.2fr;align-items:center;padding:20px 0;border-bottom:1px solid #DEDBD2;font:500 24px/32px var(--font-body);color:#5C5950"><span>Car</span><span>Cover</span><span>Renews</span><span>Per month</span><span>Status</span></div>
+<div style="display:grid;grid-template-columns:1.6fr 1.4fr 1fr 1fr 1.2fr;align-items:center;padding:24px 0;border-bottom:1px solid #DEDBD2;font:400 28px/36px var(--font-body)"><span style="display:flex;align-items:center;gap:16px"><span style="font:600 24px/1 var(--font-mono);letter-spacing:.1em;background:#EEF98F;padding:8px 12px;border-radius:6px;box-shadow:inset 0 0 0 2px #0B2A22">KR24 BXL</span><span>VW Golf</span></span><span>Comprehensive</span><span>14 Mar 2027</span><span style="font-weight:600">£38.20</span><span style="justify-self:start;display:inline-flex;align-items:center;height:44px;padding:0 18px;border-radius:999px;background:#EFF7F3;color:#145240;font:600 24px/1 var(--font-body);box-shadow:inset 0 0 0 1px #B9DECF">Active</span></div>
+<div style="display:grid;grid-template-columns:1.6fr 1.4fr 1fr 1fr 1.2fr;align-items:center;padding:24px 0;font:400 28px/36px var(--font-body)"><span style="display:flex;align-items:center;gap:16px"><span style="font:600 24px/1 var(--font-mono);letter-spacing:.1em;background:#EEF98F;padding:8px 12px;border-radius:6px;box-shadow:inset 0 0 0 2px #0B2A22">LN19 TFA</span><span>Toyota Yaris</span></span><span>Fire and theft</span><span>8 Oct 2026</span><span style="font-weight:600">£26.80</span><span style="justify-self:start;display:inline-flex;align-items:center;height:44px;padding:0 18px;border-radius:999px;background:#FFF3DC;color:#A86200;font:600 24px/1 var(--font-body);box-shadow:inset 0 0 0 1px #F7DDA8">Renews in 13 days</span></div>
+</div>
+</section>
+<section data-label="Next steps" style="background:#0B2A22;color:#fff;padding:100px 120px 80px;display:flex;flex-direction:column;font-family:var(--font-body)">
+<div style="font:500 24px/32px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:#E4F55A">06 · Next</div>
+<h2 style="margin:16px 0 0;font:700 72px/80px var(--font-display);letter-spacing:-.03em">Next steps</h2>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:48px;margin-top:96px">
+<div style="border-top:3px solid #E4F55A;padding-top:32px"><h3 style="margin:0 0 16px;font:700 44px/52px var(--font-display);letter-spacing:-.02em">Usability testing</h3><p style="margin:0;font:400 30px/42px var(--font-body);color:rgba(255,255,255,.72)">Test the claim flow with drivers who have claimed in the last year.</p></div>
+<div style="border-top:3px solid #E4F55A;padding-top:32px"><h3 style="margin:0 0 16px;font:700 44px/52px var(--font-display);letter-spacing:-.02em">Photography</h3><p style="margin:0;font:400 30px/42px var(--font-body);color:rgba(255,255,255,.72)">Warm daylight images of ordinary streets and cars to replace placeholders.</p></div>
+<div style="border-top:3px solid #E4F55A;padding-top:32px"><h3 style="margin:0 0 16px;font:700 44px/52px var(--font-display);letter-spacing:-.02em">Claims handler tools</h3><p style="margin:0;font:400 30px/42px var(--font-body);color:rgba(255,255,255,.72)">Extend the system to the internal, data-heavy side of claims.</p></div>
+</div>
+<div style="margin-top:auto;display:flex;align-items:baseline;gap:6px;font:800 64px/1 var(--font-display);letter-spacing:-.05em"><span>kerb</span><span style="display:inline-block;width:18px;height:18px;border-radius:3px;background:#E4F55A"></span></div>
+</section>
+</x-import>
+</x-dc>
+</body>
+</html>

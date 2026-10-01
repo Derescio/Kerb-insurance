@@ -1,0 +1,16 @@
+<!-- @dsCard group="Components" viewport="700x420" name="Insurance" subtitle="CoverageOption tiers, claim Timeline" -->
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;padding:24px;background:var(--bg-page)}.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.col{display:flex;flex-direction:column;gap:16px}.lbl{font:500 11px/16px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);width:84px;flex:none}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script></head><body><div id="root"></div>
+<script type="text/babel">
+const { CoverageOption, Timeline } = window.KerbDesignSystem_549f9e;
+function App(){const [p,setP]=React.useState('comp');return(<div style={{display:'grid',gridTemplateColumns:'1fr 1fr 1fr',gap:14,paddingTop:10}}>
+<CoverageOption name="Third party" description="The legal minimum" price="£29.40" selected={p==='tp'} onSelect={()=>setP('tp')} features={['Damage to others',{label:'Fire & theft',included:false},{label:'Your own car',included:false}]} />
+<CoverageOption name="Comprehensive" description="Covers your car too" price="£38.20" flag="Most chosen" selected={p==='comp'} onSelect={()=>setP('comp')} features={['Damage to others','Fire & theft','Your own car']} />
+<div style={{background:'var(--bg-surface)',borderRadius:16,padding:18,boxShadow:'var(--shadow-1)'}}><Timeline items={[{title:'Claim received',meta:'21 Sep, 18:04',status:'done'},{title:'Photos reviewed',meta:'22 Sep',status:'done'},{title:'Repair booked',meta:'Usually 1–2 days',status:'current'},{title:'Car fixed',status:'upcoming'}]} /></div>
+</div>)}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script></body></html>

@@ -1,0 +1,29 @@
+:root{
+/* Evergreen — primary brand ramp */
+--green-950:#07201A;--green-900:#0B2A22;--green-800:#103B2F;--green-700:#145240;--green-600:#17694F;--green-500:#1F8563;--green-400:#4FA886;--green-300:#8CC7AE;--green-200:#B9DECF;--green-100:#DDEFE7;--green-50:#EFF7F3;
+/* Marker — hi-vis road-line accent. Use sparingly: one hero CTA, highlights on dark. Never for text on light. */
+--marker-500:#D2E83A;--marker-400:#E4F55A;--marker-300:#EEF98F;--marker-100:#F8FDD6;
+/* Stone — warm neutrals */
+--stone-0:#FFFFFF;--stone-25:#FBFAF7;--stone-50:#F5F4EF;--stone-100:#ECEAE3;--stone-200:#DEDBD2;--stone-300:#C7C3B8;--stone-400:#A09C90;--stone-500:#7A766B;--stone-600:#5C5950;--stone-700:#413F38;--stone-800:#2A2925;--stone-900:#1A1916;
+/* Status ramps */
+--red-700:#A12A21;--red-600:#C2352B;--red-200:#F6C9C4;--red-100:#FDECEA;
+--amber-600:#A86200;--amber-400:#F2A93B;--amber-200:#F7DDA8;--amber-100:#FFF3DC;
+--blue-600:#2159C4;--blue-200:#C6D6F6;--blue-100:#E9F0FD;
+
+/* Semantic — surfaces */
+--bg-page:var(--stone-50);--bg-surface:var(--stone-0);--bg-surface-hover:var(--stone-25);--bg-sunken:var(--stone-100);--bg-inverse:var(--green-900);--bg-brand-subtle:var(--green-50);--bg-accent:var(--marker-400);
+/* Semantic — text */
+--fg-1:var(--stone-900);--fg-2:var(--stone-700);--fg-3:var(--stone-600);--fg-4:var(--stone-400);--fg-brand:var(--green-700);--fg-inverse:#FFFFFF;--fg-inverse-2:rgba(255,255,255,.72);--fg-on-primary:#FFFFFF;--fg-on-accent:var(--green-900);
+/* Semantic — borders */
+--border-1:var(--stone-200);--border-2:var(--stone-300);--border-strong:var(--stone-500);--border-inverse:rgba(255,255,255,.16);
+/* Semantic — actions */
+--action-primary:var(--green-600);--action-primary-hover:var(--green-700);--action-primary-press:var(--green-800);--accent:var(--marker-400);--accent-hover:var(--marker-500);
+/* Semantic — status */
+--success:var(--green-600);--success-bg:var(--green-50);--success-border:var(--green-200);
+--warning:var(--amber-600);--warning-bg:var(--amber-100);--warning-border:var(--amber-200);
+--danger:var(--red-600);--danger-hover:var(--red-700);--danger-bg:var(--red-100);--danger-border:var(--red-200);
+--info:var(--blue-600);--info-bg:var(--blue-100);--info-border:var(--blue-200);
+/* Focus */
+--focus-halo:rgba(23,105,79,.22);--danger-halo:rgba(194,53,43,.20);--focus-ring:0 0 0 2px var(--bg-surface),0 0 0 4px var(--green-600);
+--scrim:rgba(11,42,34,.44);
+}

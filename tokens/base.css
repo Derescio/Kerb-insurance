@@ -1,0 +1,5 @@
+[class^="kb-"],[class*=" kb-"],[class^="kb-"]::before,[class^="kb-"]::after{box-sizing:border-box}
+body{font-family:var(--font-body);color:var(--fg-1);background:var(--bg-page);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+a{color:var(--fg-brand);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--green-800)}
+::selection{background:var(--marker-300);color:var(--green-900)}

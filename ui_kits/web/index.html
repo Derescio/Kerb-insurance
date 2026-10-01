@@ -1,0 +1,45 @@
+<!-- @dsCard group="Web" viewport="1280x860" name="Kerb web" subtitle="Quote journey (car → you → cover → pay) and account dashboard" -->
+<!doctype html><html><head><meta charset="utf-8"><title>Kerb — web</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>html,body{margin:0}body{background:var(--bg-page);min-width:1100px}</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel" src="Chrome.jsx"></script>
+<script type="text/babel" src="QuoteSteps.jsx"></script>
+<script type="text/babel" src="Dashboard.jsx"></script>
+</head><body><div id="root"></div>
+<script type="text/babel">
+const { Toast } = window.KerbDesignSystem_549f9e;
+function WebApp() {
+  const [view, setView] = React.useState(localStorage.getItem('kerb-web-view') || 'quote');
+  const [step, setStep] = React.useState(0);
+  const [tab, setTab] = React.useState('overview');
+  const [q, setQ] = React.useState({ plate: 'KR24 BXL', found: false, plan: 'comp', breakdown: true, courtesy: false, freq: 'monthly', agree: false });
+  const set = (p) => setQ((s) => ({ ...s, ...p }));
+  React.useEffect(() => { localStorage.setItem('kerb-web-view', view); }, [view]);
+  const monthly = PLANS[q.plan].price + (q.breakdown ? 6.5 : 0) + (q.courtesy ? 3.2 : 0);
+  const total = q.freq === 'annual' ? monthly * 12 * 0.94 : monthly;
+  if (view === 'app') {
+    return (
+      <div data-screen-label="Dashboard">
+        <AppHeader tab={tab} onTab={setTab} />
+        <Dashboard plan={monthly + 26.8} justBought={q.agree} />
+        <div style={{ position: 'fixed', left: 24, bottom: 24 }}><button onClick={() => { setView('quote'); setStep(0); set({ found: false, agree: false }); }} style={{ border: 0, background: 'none', color: 'var(--fg-3)', font: '500 12px var(--font-mono)', cursor: 'pointer' }}>↺ restart quote demo</button></div>
+      </div>
+    );
+  }
+  const Step = [CarStep, YouStep, CoverStep, PayStep][step];
+  return (
+    <div data-screen-label={'Quote step ' + (step + 1)}>
+      <QuoteHeader step={step} onExit={() => setView('app')} />
+      <Container style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) 360px', gap: 56, padding: '48px 40px 80px', alignItems: 'start' }}>
+        <main style={{ maxWidth: 680 }}><Step q={q} set={set} total={total} /></main>
+        <Summary q={q} total={total} step={step} onBack={() => setStep(step - 1)} onNext={() => (step < 3 ? setStep(step + 1) : setView('app'))} />
+      </Container>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<WebApp />);
+</script></body></html>
