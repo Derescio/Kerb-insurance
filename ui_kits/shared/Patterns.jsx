@@ -51,7 +51,7 @@ function InfoCard({ title, icon, badge, children, style }) {
 function PolicyCard({ until, sub = 'Comprehensive · £350 excess' }) {
   return (
     <Card variant="inverse" padding="md">
-      <div className="kb-overline" style={{ color: 'var(--fg-inverse-2)' }}>KR24 BXL · Volkswagen Golf</div>
+      <div className="kb-overline" style={{ color: 'var(--fg-inverse-2)' }}>KR24 BXL · Arden Hatch</div>
       <div style={{ font: '700 20px/28px var(--font-display)', letterSpacing: '-.01em', marginTop: 10 }}>Covered until {until}</div>
       <div className="kb-body-s" style={{ color: 'var(--fg-inverse-2)', marginTop: 8 }}>{sub}</div>
     </Card>

@@ -16,7 +16,7 @@ function Landing({ q, set, onStart }) {
         <Button variant="accent" size="lg" iconRight="arrow-right" onClick={onStart}>Get my quote</Button>
         <div className="kb-caption" style={{ color: 'var(--fg-inverse-2)' }}>Takes about 4 minutes · No call centres · Save and return anytime</div>
       </div>
-      <div role="img" aria-label="A dark green Volkswagen Golf on a wet coastal road" style={{ backgroundImage: 'linear-gradient(to right, var(--green-900), rgba(11,42,34,0) 35%), url(../../assets/images/hero-coastal-road.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
+      <div role="img" aria-label="A dark green hatchback on a wet coastal road" style={{ backgroundImage: 'linear-gradient(to right, var(--green-900), rgba(11,42,34,0) 35%), url(../../assets/images/hero-coastal-road.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }} />
     </section>
   );
 }
@@ -28,8 +28,8 @@ function AboutYouStep({ q, set, onBack, onNext }) {
       <Stepper steps={QUOTE_STEPS} current={1} />
       <StepHead over="Step 2 of 4" title="Now, about you" sub="We’ve found your car. Tell us who’ll be driving it." />
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, alignItems: 'start' }}>
-        <InfoCard title="Volkswagen Golf" icon="car" badge={<Badge tone="success" dot>Found</Badge>}>
-          <KV rows={[['Registration', q.plate], ['Model', 'Life TSI 130'], ['Year', '2024']]} />
+        <InfoCard title="Arden Hatch" icon="car" badge={<Badge tone="success" dot>Found</Badge>}>
+          <KV rows={[['Registration', q.plate], ['Model', '1.5 Life'], ['Year', '2024']]} />
         </InfoCard>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16, maxWidth: 360 }}>
           <Input label="Full name" value={q.name} onChange={(e) => set({ name: e.target.value })} />

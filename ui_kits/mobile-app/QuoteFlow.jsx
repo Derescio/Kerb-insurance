@@ -14,8 +14,8 @@ function QuoteFlow({ onBought }) {
   if (step === 1) body = (
     <>
       <StepHead over="Step 2 of 4" title="Now, about you" sub="We’ve found your car. Tell us who’ll be driving it." />
-      <InfoCard title="Volkswagen Golf" icon="car" badge={<Badge tone="success" dot>Found</Badge>}>
-        <KV rows={[['Registration', q.plate], ['Model', 'Life TSI 130'], ['Year', '2024']]} />
+      <InfoCard title="Arden Hatch" icon="car" badge={<Badge tone="success" dot>Found</Badge>}>
+        <KV rows={[['Registration', q.plate], ['Model', '1.5 Life'], ['Year', '2024']]} />
       </InfoCard>
       <Input label="Full name" value={q.name} onChange={(e) => set({ name: e.target.value })} />
       <Input label="Date of birth" defaultValue="12 June 1992" />
@@ -80,7 +80,7 @@ function Landing({ q, set, onStart }) {
         </Card>
         <Button variant="accent" size="lg" fullWidth iconRight="arrow-right" onClick={onStart}>Get my quote</Button>
       </div>
-      <div role="img" aria-label="A dark green Volkswagen Golf on a wet coastal road" style={{ height: 240, backgroundImage: 'linear-gradient(to right, var(--green-900), rgba(11,42,34,0) 35%), url(../../assets/images/hero-coastal-road.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 60%' }} />
+      <div role="img" aria-label="A dark green hatchback on a wet coastal road" style={{ height: 240, backgroundImage: 'linear-gradient(to right, var(--green-900), rgba(11,42,34,0) 35%), url(../../assets/images/hero-coastal-road.jpg)', backgroundSize: 'cover', backgroundPosition: 'center 60%' }} />
     </div>
   );
 }

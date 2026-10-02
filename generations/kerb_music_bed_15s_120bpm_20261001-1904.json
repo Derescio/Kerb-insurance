@@ -1,0 +1,13 @@
+{
+  "model": "original synthesis (numpy), refs/kerb-music-bed.py",
+  "provider": "local",
+  "prompt": "calm confident ambient bed, 120 BPM, D major: Dmaj9 \u2192 Bm9 \u2192 Gmaj7 \u2192 Asus4/A \u2192 Dmaj9; swell into 3.5s cut, arpeggio from 3.5s, heartbeat kick 7.5\u201313s, end hit at 13s",
+  "license": "original work created for Kerb \u2014 no third-party samples",
+  "params": {
+    "sr": 48000,
+    "duration": 15,
+    "bpm": 120
+  },
+  "cost_quote": "$0",
+  "created": "2026-10-01T23:05:10.545899+00:00"
+}

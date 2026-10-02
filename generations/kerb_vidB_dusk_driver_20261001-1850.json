@@ -1,0 +1,17 @@
+{
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "provider": "fal",
+  "prompt": "Light rain falls through the blue-hour air, drops catching the streetlight glow. The streetlight flickers once. The camera drifts slowly and subtly toward the car window. The driver glances at her phone and relaxes into a small smile. The phone's glow stays steady and its screen content does not change. The lime-painted kerbstone in the foreground glistens. Audio: soft rain pattering on the car roof, distant traffic hush, quiet suburban evening ambience. No music, no speech.",
+  "negative_prompt": "text changes, warped screen, distorted UI, distorted face, extra people, logos, blur, low quality",
+  "refs": [
+    "kerb_ad04_dusk_driver_banner_20261001-1822.png"
+  ],
+  "params": {
+    "duration": 5,
+    "generate_audio": true,
+    "start_frame": true
+  },
+  "cost_quote": "$0.84",
+  "request_id": "01a0f9a8-2ec2-7fa2-8224-f157b5e2b38d",
+  "created": "2026-10-01T22:50:46.972Z"
+}

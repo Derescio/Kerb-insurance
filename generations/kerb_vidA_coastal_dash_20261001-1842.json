@@ -1,0 +1,17 @@
+{
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "provider": "fal",
+  "prompt": "Locked-off interior shot slowly pushing forward toward the windscreen. Light rain beads on the glass; the windscreen wipers sweep once, smoothly. Through the windscreen the wet coastal road and cliffs drift gently closer, low clouds move slowly over the sea. The smartphone in the dashboard mount stays perfectly still and its screen content does not change. Realistic, calm, cinematic.",
+  "negative_prompt": "text changes, warped screen, distorted UI, new objects, people, logos, blur, low quality",
+  "refs": [
+    "kerb_ad06_coastal_dash_story_20261001-1825.png"
+  ],
+  "params": {
+    "duration": 5,
+    "generate_audio": false,
+    "start_frame": true
+  },
+  "cost_quote": "$0.56",
+  "request_id": "01a0f9a0-7ea9-7601-801a-918cf49239e8",
+  "created": "2026-10-01T22:42:12.932Z"
+}

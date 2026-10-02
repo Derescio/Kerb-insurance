@@ -1,0 +1,15 @@
+{
+  "model": "nano-banana-2",
+  "provider": "kie",
+  "prompt": "Vertical 9:16 photograph from inside a car. A smartphone in a minimal dashboard mount in sharp focus in the lower half. The smartphone screen must show the attached Kerb app screenshot exactly — same layout, colours and text, crisp and legible, no invented UI. Through the windscreen, slightly soft: a winding wet coastal road in Cornwall, green cliffs, grey sea, overcast moody sky. Natural, editorial, evergreen colour grade. No text. Leave a clean, uncluttered area in the top of the frame (sky) for a logo to be added later. Brand: Kerb, a calm, modern UK digital car insurer. Palette: deep evergreen #0B2A22, bright lime #E4F55A used sparingly as the single accent, warm off-white #FBFAF7, soft stone greys. Recurring motif: one kerbstone painted lime. UK setting. Confident, clean, premium, not hype. No car manufacturer badges or logos, no readable number plates, no third-party logos, no watermark. Do not draw any Kerb logo or wordmark.",
+  "refs": [
+    "refs/kerb-app-quote.png"
+  ],
+  "params": {
+    "aspect": "9:16",
+    "logo_space": "top-left"
+  },
+  "cost_quote": "~$0.08",
+  "fallbacks": [],
+  "created": "2026-10-01T22:25:33.938Z"
+}

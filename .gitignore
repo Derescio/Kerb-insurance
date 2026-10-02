@@ -1,0 +1,14 @@
+# Secrets — API keys for /generate and anything else
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Claude Code per-machine settings (may hold local permissions/paths)
+.claude/settings.local.json
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+desktop.ini

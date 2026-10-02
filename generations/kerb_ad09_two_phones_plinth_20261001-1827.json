@@ -1,0 +1,16 @@
+{
+  "model": "google/nano-banana-edit",
+  "provider": "kie",
+  "prompt": "Wide 16:9 product-launch photograph. Two smartphones standing side by side, slightly fanned, on top of a real granite kerbstone painted bright lime, used as a display plinth. The left phone shows the first attached screenshot, the right phone shows the second, exactly as given, crisp and legible. Warm off-white studio backdrop, soft shadow. No text. Leave a clean, uncluttered area in the left third for a logo to be added later. Brand: Kerb, a calm, modern UK digital car insurer. Palette: deep evergreen #0B2A22, bright lime #E4F55A used sparingly as the single accent, warm off-white #FBFAF7, soft stone greys. Recurring motif: one kerbstone painted lime. UK setting. Confident, clean, premium, not hype. No car manufacturer badges or logos, no readable number plates, no third-party logos, no watermark. Do not draw any Kerb logo or wordmark.",
+  "refs": [
+    "refs/kerb-app-home.png",
+    "refs/kerb-app-claim-tracker.png"
+  ],
+  "params": {
+    "aspect": "16:9",
+    "logo_space": "top-left"
+  },
+  "cost_quote": "~$0.04",
+  "fallbacks": [],
+  "created": "2026-10-01T22:27:37.238Z"
+}

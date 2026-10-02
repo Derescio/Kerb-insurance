@@ -1,0 +1,41 @@
+{
+  "model": "edit (ffmpeg) of fal-ai/kling-video/v3/pro/image-to-video clips",
+  "provider": "local",
+  "timeline": [
+    {
+      "t": "0.0-3.5",
+      "src": "kerb_vidA_coastal_dash_20261001-1842.mp4 [0.8-4.3]",
+      "overlay": "refs/kerb-spot-ovA.png",
+      "audio": "vidB ambience"
+    },
+    {
+      "t": "3.5-7.5",
+      "src": "kerb_vidB_dusk_driver_20261001-1850.mp4 [0.4-4.4] crop 605x1076@1080",
+      "overlay": "refs/kerb-spot-ovB.png",
+      "audio": "native"
+    },
+    {
+      "t": "7.5-11.0",
+      "src": "kerb_vidC_pocket_street_20261001-1852.mp4 [1.3-4.8]",
+      "audio": "native"
+    },
+    {
+      "t": "11.0-13.0",
+      "src": "refs/kerb-spot-poster.png (ad01 _logo) slow zoom",
+      "audio": "vidB ambience"
+    },
+    {
+      "t": "13.0-15.0",
+      "src": "refs/kerb-spot-endcard.png",
+      "audio": "vidB ambience, fade out"
+    }
+  ],
+  "params": {
+    "size": "1080x1920",
+    "fps": 24,
+    "audio": "AAC 192k, loudnorm I=-14 (measured -15.9 LUFS)",
+    "fonts": "Bricolage Grotesque Bold, Instrument Sans"
+  },
+  "cost_quote": "$0 edit; clips $0.56 + $0.84 + $0.84 = $2.24",
+  "created": "2026-10-01T22:56:03.573823+00:00"
+}

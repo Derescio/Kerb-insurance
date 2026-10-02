@@ -1,0 +1,15 @@
+{
+  "model": "openai/gpt-image-2/edit",
+  "provider": "fal",
+  "prompt": "Bold editorial print-style advert, square. Split composition: left half deep evergreen, right half bright lime. A hand holding a modern smartphone crosses the split. The smartphone screen must show the attached Kerb app screenshot exactly — same layout, colours and text, crisp and legible, no invented UI. Headline set large in a clean geometric sans-serif, sentence case, off-white on the green half: \"Covered in under 5 minutes.\" Below it, smaller: \"Car insurance, minus the detours.\" Spell the text exactly. Leave a clean, uncluttered area in the bottom-right corner for a logo to be added later. Brand: Kerb, a calm, modern UK digital car insurer. Palette: deep evergreen #0B2A22, bright lime #E4F55A used sparingly as the single accent, warm off-white #FBFAF7, soft stone greys. Recurring motif: one kerbstone painted lime. UK setting. Confident, clean, premium, not hype. No car manufacturer badges or logos, no readable number plates, no third-party logos, no watermark. Do not draw any Kerb logo or wordmark.",
+  "refs": [
+    "refs/kerb-app-quote.png"
+  ],
+  "params": {
+    "aspect": "1:1",
+    "logo_space": "bottom-right"
+  },
+  "cost_quote": "~$0.07",
+  "fallbacks": [],
+  "created": "2026-10-01T22:13:24.628Z"
+}

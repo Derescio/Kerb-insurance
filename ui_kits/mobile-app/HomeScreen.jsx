@@ -32,8 +32,8 @@ function HomeScreen({ go, claim }) {
           <Plate>KR24 BXL</Plate>
           <Badge tone="accent" dot>Active</Badge>
         </div>
-        <div className="kb-h2" style={{ marginTop: 18 }}>Volkswagen Golf</div>
-        <div style={{ font: '400 14px/20px var(--font-body)', color: 'var(--fg-inverse-2)' }}>1.5 TSI Life · 2024</div>
+        <div className="kb-h2" style={{ marginTop: 18 }}>Arden Hatch</div>
+        <div style={{ font: '400 14px/20px var(--font-body)', color: 'var(--fg-inverse-2)' }}>1.5 Life · 2024</div>
         <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr 0.7fr', gap: 8, marginTop: 20, paddingTop: 16, borderTop: '1px solid var(--border-inverse)' }}>
           {[['Cover', 'Comprehensive'], ['Renews', '14 Mar 2027'], ['Excess', '£350']].map(([k, v]) => (
             <div key={k}><div className="kb-caption" style={{ color: 'var(--fg-inverse-2)' }}>{k}</div><div style={{ font: '600 14px/20px var(--font-body)', marginTop: 2 }}>{v}</div></div>

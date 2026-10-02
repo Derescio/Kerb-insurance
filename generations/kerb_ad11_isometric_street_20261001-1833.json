@@ -1,0 +1,15 @@
+{
+  "model": "google/nano-banana-lite/edit",
+  "provider": "fal",
+  "prompt": "Vertical 9:16 isometric illustration. A tidy UK terraced street in evergreen and stone tones, every kerb painted bright lime, one small dark green hatchback parked. Floating above the street, an oversized smartphone. The smartphone screen must show the attached Kerb app screenshot exactly — same layout, colours and text, crisp and legible, no invented UI. Clean vector style, soft shading. No text. Leave a clean, uncluttered area in the top area for a logo to be added later. Brand: Kerb, a calm, modern UK digital car insurer. Palette: deep evergreen #0B2A22, bright lime #E4F55A used sparingly as the single accent, warm off-white #FBFAF7, soft stone greys. Recurring motif: one kerbstone painted lime. UK setting. Confident, clean, premium, not hype. No car manufacturer badges or logos, no readable number plates, no third-party logos, no watermark. Do not draw any Kerb logo or wordmark.",
+  "refs": [
+    "refs/kerb-app-claim-tracker.png"
+  ],
+  "params": {
+    "aspect": "9:16",
+    "logo_space": "top-left"
+  },
+  "cost_quote": "~$0.05",
+  "fallbacks": [],
+  "created": "2026-10-01T22:33:02.776Z"
+}

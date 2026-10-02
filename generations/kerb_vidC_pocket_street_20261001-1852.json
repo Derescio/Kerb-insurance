@@ -1,0 +1,17 @@
+{
+  "model": "fal-ai/kling-video/v3/pro/image-to-video",
+  "provider": "fal",
+  "prompt": "Evening on a wet London terraced street. The person slowly slides the phone a little further out of their raincoat pocket toward the camera. Raindrops glisten on the coat, streetlights shimmer in the wet pavement, the lime-painted kerbstone gleams. The phone screen content does not change. The headline text at the bottom stays perfectly still and legible. Audio: gentle rain on pavement, the soft rustle of a raincoat, one quiet phone notification chime. No music, no speech.",
+  "negative_prompt": "text changes, warped text, warped screen, distorted hands, extra fingers, logos, blur, low quality",
+  "refs": [
+    "kerb_ad03_policy_pocket_story_20261001-1814.png"
+  ],
+  "params": {
+    "duration": 5,
+    "generate_audio": true,
+    "start_frame": true
+  },
+  "cost_quote": "$0.84",
+  "request_id": "01a0f9a9-db6a-7ca2-b669-6ad789d9bcc9",
+  "created": "2026-10-01T22:52:17.901Z"
+}

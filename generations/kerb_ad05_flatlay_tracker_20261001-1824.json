@@ -1,0 +1,15 @@
+{
+  "model": "nano-banana-2",
+  "provider": "kie",
+  "prompt": "Overhead flat-lay product photograph, portrait 4:5, on a warm pale stone surface. Neatly arranged: an unbranded black car key fob, a flat white coffee in a ceramic cup, folded sunglasses, a small square lime sticky note, and a smartphone lying flat in the centre. The smartphone screen must show the attached Kerb app screenshot exactly — same layout, colours and text, crisp and legible, no invented UI. Soft natural window light, gentle shadows, calm and tidy. No text. Leave a clean, uncluttered area in the top-left area for a logo to be added later. Brand: Kerb, a calm, modern UK digital car insurer. Palette: deep evergreen #0B2A22, bright lime #E4F55A used sparingly as the single accent, warm off-white #FBFAF7, soft stone greys. Recurring motif: one kerbstone painted lime. UK setting. Confident, clean, premium, not hype. No car manufacturer badges or logos, no readable number plates, no third-party logos, no watermark. Do not draw any Kerb logo or wordmark.",
+  "refs": [
+    "refs/kerb-app-claim-tracker.png"
+  ],
+  "params": {
+    "aspect": "4:5",
+    "logo_space": "top-left"
+  },
+  "cost_quote": "~$0.08",
+  "fallbacks": [],
+  "created": "2026-10-01T22:24:40.732Z"
+}

@@ -1,0 +1,15 @@
+{
+  "model": "nano-banana-2",
+  "provider": "kie",
+  "prompt": "Cinematic wide web banner photograph, 16:9. Blue-hour dusk, light rain, a driver sitting in a parked dark green hatchback on a quiet UK residential street, seen through the open driver's window; they glance at a smartphone that lights their face softly. The smartphone screen must show the attached Kerb app screenshot exactly — same layout, colours and text, crisp and legible, no invented UI. In the foreground, the pavement edge with one kerbstone painted bright lime, wet and glossy. Shallow depth of field, 35mm, natural colour grade leaning evergreen. No text. Leave a clean, uncluttered area in the top-left third for a logo to be added later. Brand: Kerb, a calm, modern UK digital car insurer. Palette: deep evergreen #0B2A22, bright lime #E4F55A used sparingly as the single accent, warm off-white #FBFAF7, soft stone greys. Recurring motif: one kerbstone painted lime. UK setting. Confident, clean, premium, not hype. No car manufacturer badges or logos, no readable number plates, no third-party logos, no watermark. Do not draw any Kerb logo or wordmark.",
+  "refs": [
+    "refs/kerb-app-home.png"
+  ],
+  "params": {
+    "aspect": "16:9",
+    "logo_space": "top-left"
+  },
+  "cost_quote": "~$0.08",
+  "fallbacks": [],
+  "created": "2026-10-01T22:22:04.969Z"
+}

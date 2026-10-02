@@ -1,0 +1,17 @@
+{
+  "model": "edit (ffmpeg)",
+  "provider": "local",
+  "video": "kerb_spot_15s_9x16_20261001-1854.mp4 (video stream copied)",
+  "audio": {
+    "rain": "Kling native ambience (vidB/vidC) at -21 LUFS",
+    "music": "kerb_music_bed_15s_120bpm_20261001-1904.wav at -17 LUFS",
+    "master": "loudnorm I=-14 TP=-1.5 \u2192 measured -13.9 LUFS / -1.5 dBFS"
+  },
+  "params": {
+    "size": "1080x1920",
+    "fps": 24,
+    "duration": 15
+  },
+  "cost_quote": "$0 (clips already paid: $2.24)",
+  "created": "2026-10-01T23:05:10.545899+00:00"
+}

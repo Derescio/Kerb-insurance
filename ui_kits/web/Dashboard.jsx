@@ -43,7 +43,7 @@ function Dashboard({ plan, justBought }) {
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead><tr><th style={th}>Car</th><th style={th}>Cover</th><th style={th}>Renews</th><th style={{ ...th, textAlign: 'right' }}>Per month</th><th style={th}>Status</th><th style={th}></th></tr></thead>
             <tbody>
-              {[['KR24 BXL', 'Volkswagen Golf', 'Comprehensive', '14 Mar 2027', 38.2, ['success', 'Active']], ['LN19 TFA', 'Toyota Yaris Hybrid', 'Third party, fire & theft', '8 Oct 2026', 26.8, ['warning', 'Renews in 13 days']]].map(([p, car, cov, ren, pr, [tone, st]]) => (
+              {[['KR24 BXL', 'Arden Hatch', 'Comprehensive', '14 Mar 2027', 38.2, ['success', 'Active']], ['LN19 TFA', 'Pell Hybrid', 'Third party, fire & theft', '8 Oct 2026', 26.8, ['warning', 'Renews in 13 days']]].map(([p, car, cov, ren, pr, [tone, st]]) => (
                 <tr key={p}>
                   <td style={td}><div style={{ display: 'flex', alignItems: 'center', gap: 12 }}><PlateTag size={13}>{p}</PlateTag><span style={{ fontWeight: 500 }}>{car}</span></div></td>
                   <td style={td}>{cov}</td>
@@ -55,7 +55,7 @@ function Dashboard({ plan, justBought }) {
               ))}
             </tbody>
           </table>
-          <div style={{ padding: 20 }}><Alert tone="warning" title="Your Yaris renews on 8 October" action={<Button size="sm" variant="secondary">Review renewal</Button>}>The new price is £27.40 a month. Check your mileage and address are still right.</Alert></div>
+          <div style={{ padding: 20 }}><Alert tone="warning" title="Your Pell renews on 8 October" action={<Button size="sm" variant="secondary">Review renewal</Button>}>The new price is £27.40 a month. Check your mileage and address are still right.</Alert></div>
         </Card>
         <Card padding="md">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>

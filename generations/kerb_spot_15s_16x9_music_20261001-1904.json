@@ -1,0 +1,17 @@
+{
+  "model": "edit (ffmpeg)",
+  "provider": "local",
+  "video": "16:9 edit \u2014 vidB full-frame; vidA/vidC split over blurred self; overlays refs/kerb-spot-16x9-*.png",
+  "audio": {
+    "rain": "Kling native ambience (vidB/vidC) at -21 LUFS",
+    "music": "kerb_music_bed_15s_120bpm_20261001-1904.wav at -17 LUFS",
+    "master": "loudnorm I=-14 TP=-1.5 \u2192 measured -13.9 LUFS / -1.5 dBFS"
+  },
+  "params": {
+    "size": "1920x1080",
+    "fps": 24,
+    "duration": 15
+  },
+  "cost_quote": "$0 (clips already paid: $2.24)",
+  "created": "2026-10-01T23:05:10.545899+00:00"
+}
